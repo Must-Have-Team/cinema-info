@@ -8,18 +8,15 @@ import Home from "./Home";
 import Stuff from "./Stuff";
 import Contact from "./Contact";
 import Login from "./Login";
- 
+import Navbar from './Navbar' 
+import Footer from './Footer'
+
 class Main extends Component {
     render() {
       return (
         <HashRouter>
           <div>
-            <ul className="header">
-              <li><NavLink exact to="/">Home</NavLink></li>
-              <li><NavLink to="/stuff">Stuff</NavLink></li>
-              <li><NavLink to="/contact">Contact</NavLink></li>
-              <li className= 'log'><NavLink to="/login">LOGIN</NavLink></li>
-            </ul>
+          <Navbar />
             <div className="content">
                 <Route exact path="/" component={Home}/>
                 <Route path="/stuff" component={Stuff}/>
@@ -27,6 +24,7 @@ class Main extends Component {
                 <Route path="/login" component={Login}/>
 
             </div>
+            <Footer />
           </div>
         </HashRouter>
       );
