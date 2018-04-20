@@ -8,7 +8,7 @@ import Home from "./Home";
 import Stuff from "./Stuff";
 import Contact from "./Contact";
 import Login from "./Login";
-import Navbar from './Navbar' 
+import Navbar from './Navbar'
 import Footer from './Footer'
 
 class Main extends Component {
@@ -22,7 +22,6 @@ class Main extends Component {
                 <Route path="/stuff" component={Stuff}/>
                 <Route path="/contact" component={Contact}/>
                 <Route path="/login" component={Login}/>
-
             </div>
             <Footer />
           </div>
@@ -30,5 +29,5 @@ class Main extends Component {
       );
     }
   }
- 
+
 export default Main;
