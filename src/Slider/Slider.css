@@ -1,0 +1,129 @@
+.slider{
+  position: relative;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+.slides{
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+  height: auto;
+}
+.slide-item{
+  display: none;
+}
+.slide-item.active-slide{
+  display: block;
+}
+.slide-item img{
+  position: absolute;
+  width: 100%;
+  height: auto;
+  opacity : 0;
+  transition: opacity 1s;
+}
+.slide-item.active-slide img{
+  position: static;
+  width: 100%;
+  height: auto;
+  opacity: 1;
+}
+.slider .descr{
+  position: absolute;
+  top: 50px;
+  left: 10%;
+  color: #fff;
+  background-color: #555;
+  z-index: 5;
+}
+.slider .descr a, .slider .descr h2{
+  display: inline-block;
+  margin: 20px;
+}
+.slider .descr a{
+  padding: 5px 20px;
+  background-color: #fa5;
+  outline: none;
+  border: none;
+  border-radius: 15px;
+  color: #333;
+  text-decoration: none
+}
+.slider .labels{
+  display: flex;
+  position: absolute;
+  bottom: 10px;
+  left: calc(50% - 55px);
+}
+.slider .labels span{
+  width: 20px;
+  height: 5px;
+  background-color: #fff;
+  cursor: pointer;
+  margin-left: 10px;
+}
+.slider .labels span.current-slide{
+  background-color: orange;
+}
+.slider .btn{
+  position: absolute;
+  top: 0;
+  height: 100%;
+  font-size: 20px;
+  color: #fff;
+  cursor: pointer;
+  z-index: 10;
+}
+.slider .btn-left, .slider .btn-right{
+  width: 10%;
+}
+.slider .btn-right{
+  right: 0;
+}
+.slider .btn-right span{
+  position: absolute;
+  height: 100%;
+  top: 35%;
+  right: 10px;
+  font-size: 100px;
+}
+.slider .btn-left span{
+  position: absolute;
+  height: 100%;
+  top: 35%;
+  left: 10px;
+  font-size: 100px;
+}
+
+@media screen and (max-width: 800px){
+  .slider .descr{
+  position: static;
+  display: flex;
+  justify-content: space-between;
+  -ms-align-items: center;
+  align-items: center;
+  color: #fff;
+  background-color: #555;
+  z-index: 5;
+  font-size: 14px;
+  }
+  .slider .descr a, .slider .descr h2{
+    font-size: 16px;
+    margin: 10px ;
+  }
+  .slider .btn{
+    display: none;
+  }
+  .slider .labels{
+    display: flex;
+    position: absolute;
+    bottom: 10px;
+    left: calc(50% - 35px);
+  }
+  .slider .labels span{
+    width: 10px;
+    margin-left: 5px;
+  }
+}
