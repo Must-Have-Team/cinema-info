@@ -1,0 +1,134 @@
+.film-box-holder {
+  margin: 0;
+  padding: 3% 1% 0 0;
+  margin: 0 5%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  justify-content: flex-start;
+  vertical-align: baseline;
+}
+.actual {
+  margin-top: 2% !important;
+  color: black;
+}
+.film-box {
+  margin:1%;
+  border: 1px solid rgb(214, 214, 214);
+  background-color: rgb(236, 234, 234, 0.5);
+}
+.film-box:hover {
+  cursor: pointer;
+  border: 1px solid rgb(235, 233, 233);
+}
+
+.film-box:visited {
+  opacity: 0.1;
+  background-color: rgb(236, 234, 234, 0.8);
+}
+.img-box {
+  width: 170px;
+  height: 240px;
+  border-bottom: 1px solid rgb(214, 214, 214);
+}
+
+.film-info{
+  width: 100%;
+  margin: 1.5%;
+  color: black;
+  font-size: 90%;
+  text-align: center;
+}
+
+.film-name {
+  margin:0;
+  font-weight: 700;
+}
+.film-raiting {
+  line-height:0;
+  color: rgb(68, 67, 67);
+}
+.btn-all-film {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1% 0 5% 0;
+}
+.btn-film {
+  width: 150px;
+  padding: 6% 0;
+  border:2px solid #e67300;
+  border-radius: 4%;
+  background: #2a2e33;
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+}
+.btn-film:hover{
+  cursor: pointer;
+  background: linear-gradient(#2a2e33,#693500);
+  border-color: rgb(199, 199, 199);
+}
+.btn-film:active{
+  background: linear-gradient(#2a2e33,#bd5f02);
+  border-color:#e67300;
+}
+.btn-film:focus {
+  outline: 0;
+  background: linear-gradient(#2a2e33,#693500);
+}
+@media only screen and (max-width: 600px) {
+ .film-box {
+  width: 47%;
+  height: auto;
+  margin:1%;
+ }
+ .img-box {
+  width: 100%;
+  /* height: 88%; */
+  height: auto;
+ }
+ .film-info {
+  font-size: 85%;
+ }
+.btn-film {
+  width: 180px;
+}
+}
+@media only screen and (max-width: 840px) and (min-width: 601px) {
+.film-box-holder {
+  margin-right: 3%;
+}
+.film-box {
+  width:30%;
+}
+.img-box {
+  width: 100%;
+  height: auto;
+}
+
+}
+@media only screen and (max-width: 1000px) and (min-width: 841px) {
+.film-box-holder {
+  margin-right: 3%;
+}
+.film-box {
+  width:20%;
+  margin: 1% 2%;
+}
+.img-box {
+  width: 100%;
+  height: auto;
+}
+}
+@media only screen and (max-width: 1325px) and (min-width: 1001px) {
+.film-box {
+  width:16%;
+  margin: 1% 2%;
+}
+.img-box {
+  width: 100%;
+  height: auto;
+}
+}

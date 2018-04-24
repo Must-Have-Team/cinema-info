@@ -44,23 +44,23 @@ class Slider extends Component {
     this.setState({current:number});
   }
 
-  setTimer() { 
+  setTimer() {
     this.timer = setTimeout(this.handleRightClick, 7000);
   }
 
   clearTimeOut () {
       clearTimeout(this.timer)
   }
-  
+
   componentWillUnmount(){
     this.clearTimeOut();
   }
 
   renderSlides = (item, index) => {
     return (
-      <div 
+      <div
         className={
-        index === this.state.current ? 'slide-item active-slide' : 'slide-item'} 
+        index === this.state.current ? 'slide-item active-slide' : 'slide-item'}
         key={item.name}
       >
       <a href="#" >
@@ -71,9 +71,9 @@ class Slider extends Component {
 
   renderLabels = (item, index) => {
     return (
-      <Labels 
-        classer={index === this.state.current ? 'current-slide' : ''} 
-        slideNumber={index} 
+      <Labels
+        classer={index === this.state.current ? 'current-slide' : ''}
+        slideNumber={index}
         certainSlide={this.certainSlide}
         key={item.name}
       />
@@ -87,7 +87,7 @@ class Slider extends Component {
       this.setTimer();
     }
     return (
-    	<div 
+    	<div
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave ={this.handleMouseLeave}
         className="slider"
@@ -99,7 +99,7 @@ class Slider extends Component {
           {SliderStore.map(this.renderLabels)}
         </div>
         <div className="btn btn-left" onClick={this.handleLeftClick}>
-        <div 
+        <div
           className="arrow-left"
           style={{'backgroundImage' : 'url(images/slider/toleft.png)'}}>
         </div>

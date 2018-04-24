@@ -10,13 +10,10 @@
     font-weight: bold;
     text-decoration: none;
     display: block;
-    
+
   }
   ul.navbar-nav li.nav-item {
     padding: 10px;
-  }
-  .content {
-    padding: 20px;
   }
   .content h2 {
     padding: 0;
