@@ -2,6 +2,7 @@
   position: relative;
   width: 100%;
   height: auto;
+  max-height: 750px;
   overflow: hidden;
 }
 .slides{
@@ -12,44 +13,27 @@
   height: auto;
 }
 .slide-item{
-  display: none;
+  opacity : 0;
+  transition: all 1s;
 }
 .slide-item.active-slide{
+  width: 100%;
   display: block;
+  opacity: 1;
 }
 .slide-item img{
   position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
   width: 100%;
   height: auto;
-  opacity : 0;
-  transition: opacity 1s;
 }
 .slide-item.active-slide img{
   position: static;
   width: 100%;
   height: auto;
-  opacity: 1;
-}
-.slider .descr{
-  position: absolute;
-  top: 50px;
-  left: 10%;
-  color: #fff;
-  background-color: #555;
-  z-index: 5;
-}
-.slider .descr a, .slider .descr h2{
-  display: inline-block;
-  margin: 20px;
-}
-.slider .descr a{
-  padding: 5px 20px;
-  background-color: #fa5;
-  outline: none;
-  border: none;
-  border-radius: 15px;
-  color: #333;
-  text-decoration: none
 }
 .slider .labels{
   display: flex;
@@ -69,52 +53,49 @@
 }
 .slider .btn{
   position: absolute;
+  padding: 0;
+  margin: 0;
   top: 0;
+  width: 10%;
   height: 100%;
   font-size: 20px;
   color: #fff;
   cursor: pointer;
   z-index: 10;
 }
-.slider .btn-left, .slider .btn-right{
-  width: 10%;
-}
 .slider .btn-right{
   right: 0;
 }
-.slider .btn-right span{
+.slider .btn-left .arrow-left, .slider .btn-right .arrow-right{
   position: absolute;
-  height: 100%;
-  top: 35%;
-  right: 10px;
-  font-size: 100px;
+  top: calc(50% - 30px);
+  padding: 5px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50px;
+  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.1);
+  background-repeat: no-repeat;
+  background-position: center center
 }
-.slider .btn-left span{
-  position: absolute;
-  height: 100%;
-  top: 35%;
+.slider .btn-left .arrow-left{
   left: 10px;
-  font-size: 100px;
+}
+.slider .btn-right .arrow-right{
+  right: 10px;
 }
 
-@media screen and (max-width: 800px){
-  .slider .descr{
-  position: static;
-  display: flex;
-  justify-content: space-between;
-  -ms-align-items: center;
-  align-items: center;
-  color: #fff;
-  background-color: #555;
-  z-index: 5;
-  font-size: 14px;
+@media screen and (max-width: 991px){
+  .slider .btn-left .arrow-left, .slider .btn-right .arrow-right{
+    top: calc(50% - 8px);
+    width: 16px;
+    height: 16px;
   }
-  .slider .descr a, .slider .descr h2{
-    font-size: 16px;
-    margin: 10px ;
+  .slider .btn-left .arrow-left{
+    background-position: 0 50%;
   }
-  .slider .btn{
-    display: none;
+  .slider .btn-right .arrow-right{
+    background-position: 100% 50%;
   }
   .slider .labels{
     display: flex;
