@@ -1,16 +1,16 @@
 import React, { Component } from "react";
-import { Route, NavLink, HashRouter } from "react-router-dom";
+import { Route, NavLink, BrowserRouter } from "react-router-dom";
 import Home from "./Home";
 import Stuff from "./Stuff";
 import Contact from "./Contact";
-import Login from "./Login";
+import Login from "./Login/Login";
 import Navbar from './Navbar'
 import Footer from './Footer'
 
 class Main extends Component {
     render() {
       return (
-        <HashRouter>
+        <BrowserRouter>
           <div>
           <Navbar />
             <div className="content">
@@ -21,7 +21,7 @@ class Main extends Component {
             </div>
             <Footer />
           </div>
-        </HashRouter>
+        </BrowserRouter>
       );
     }
   }

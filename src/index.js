@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Main from "./Main";
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import "./index.css";
-import "./Login.css";
  
 ReactDOM.render(
   <Main/>, 

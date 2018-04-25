@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import {
     Route,
     NavLink,
-    HashRouter
+    BrowserRouter
   } from "react-router-dom"; 
 
 
