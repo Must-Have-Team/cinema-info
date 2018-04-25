@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import {
-    Route,
-    NavLink,
-    BrowserRouter
+    NavLink
   } from "react-router-dom"; 
 
 
