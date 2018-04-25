@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Slider from './Slider/Slider.js'
-import Movies from './Allmovies/AllMovies'
+import Movies from './Allmovies/allmovies.js'
 
 class Home extends Component {
   render() {
