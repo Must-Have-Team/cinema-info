@@ -3,10 +3,8 @@ import React, { Component } from 'react';
 class Labels extends Component{
 	constructor(props){
 		super(props);
-    this.openSlide = this.openSlide.bind(this)
-
 	}
-  openSlide(){  
+  openSlide = () => {  
     this.props.certainSlide(this.props.slideNumber);
   }
   render(){
