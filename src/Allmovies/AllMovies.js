@@ -8,9 +8,8 @@ import {
 class Movies extends Component{
   renderFilm = (el) => {
     return (
-      
       <div className="film-box" key={el.id} id={el.id}>
-        <Link to={`/film/${el.id}`}>
+        <Link to={`/film/${el.id}`} style={{ textDecoration: 'none' }}>
           <img className="img-box" src={el.url} alt="filmImg" />
           <div className="film-info">
             <p className="film-name">{el.name}</p>
@@ -18,18 +17,20 @@ class Movies extends Component{
           </div>
         </Link>
       </div>
-      
+
     )
   }
   render(){
     return (
-      <div className="film-list row">
-        <h2 className="actual mx-auto">Актуальне у кіно</h2>
+      <div class="parallax">
+      <div className="film-list row ">
+         <h2 className="actual mx-auto">Актуальне у кіно</h2>
         <div className="film-box-holder">
           {FilmStore.map(this.renderFilm)}
         </div>
-        <div className="btn-all-film mx-auto">
-          <button className="btn-film">Всі фільми</button>
+          <div className="btn-all-film mx-auto">
+            <button className="btn-film">Всі фільми</button>
+          </div>
         </div>
       </div>
     )

@@ -1,25 +1,58 @@
 .film-box-holder {
-  margin: 0;
-  padding: 3% 1% 0 0;
-  margin: 0 5%;
+  padding: 3% 0 0 4%;
+  margin-left: 3%;
+  margin-right:0;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-between;
   justify-content: flex-start;
   vertical-align: baseline;
+  width: 100%;
+  height: 100%;
+}
+.parallax {
+  width: 98%;
+  height: 100%;
+  display: block;
+  position: relative;
+}
+.parallax::after {
+  content: '';
+  transform: translateX(-1px) translateY(4px) scaleY(1.1);
+  background-image: url("186211-OX1RG4-307.jpg");
+  background-color: black;
+  z-index: -1;
+  opacity: 0.9;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: -28px;
+  background-size: cover;
+  background-attachment: fixed;
+  background-clip: content-box;
+  background-position: bottom;
+  background-repeat: no-repeat;
+
 }
 .actual {
-  margin-top: 2% !important;
-  color: black;
+  box-sizing: border-box;
+  text-align: center;
+  padding: 1% !important;
+  background-color: rgb(236, 234, 234, 0.8);
+  width: 102%;
+  color: rgb(5, 5, 5);
+  font-weight: 800;
 }
 .film-box {
   margin:1%;
   border: 1px solid rgb(214, 214, 214);
-  background-color: rgb(236, 234, 234, 0.5);
+  background-color: rgb(236, 234, 234, 0.6);
 }
 .film-box:hover {
   cursor: pointer;
+  transform: scale(1.08);
   border: 1px solid rgb(235, 233, 233);
 }
 
@@ -28,6 +61,7 @@
   background-color: rgb(236, 234, 234, 0.8);
 }
 .img-box {
+  opacity: 1 !important;
   width: 170px;
   height: 240px;
   border-bottom: 1px solid rgb(214, 214, 214);
@@ -53,7 +87,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 1% 0 5% 0;
+  margin: 1%;
 }
 .btn-film {
   width: 150px;
@@ -79,26 +113,39 @@
   background: linear-gradient(#2a2e33,#693500);
 }
 @media only screen and (max-width: 600px) {
- .film-box {
+.film-box-holder {
+  padding: 3% 1% 0 3%;
+ }
+.parallax::after {
+  transform: scale(1);
+}
+.actual {
+  font-size: 100%;
+}
+.film-box {
   width: 47%;
   height: auto;
   margin:1%;
  }
- .img-box {
+.img-box {
   width: 100%;
   /* height: 88%; */
   height: auto;
- }
- .film-info {
+}
+.film-info {
   font-size: 85%;
- }
+}
 .btn-film {
   width: 180px;
+  margin-bottom: 25%;
 }
 }
 @media only screen and (max-width: 840px) and (min-width: 601px) {
 .film-box-holder {
   margin-right: 3%;
+}
+.parallax::after {
+  transform: scale(1);
 }
 .film-box {
   width:30%;
@@ -107,11 +154,18 @@
   width: 100%;
   height: auto;
 }
+.btn-film {
+  width: 180px;
+  margin-bottom: 25%;
+}
 
 }
 @media only screen and (max-width: 1000px) and (min-width: 841px) {
 .film-box-holder {
   margin-right: 3%;
+}
+.parallax::after {
+  transform: scale(1);
 }
 .film-box {
   width:20%;
@@ -121,14 +175,25 @@
   width: 100%;
   height: auto;
 }
+.btn-film {
+  width: 180px;
+  margin-bottom: 25%;
+}
 }
 @media only screen and (max-width: 1325px) and (min-width: 1001px) {
 .film-box {
   width:16%;
   margin: 1% 2%;
 }
+.parallax::after {
+  transform: scale(1);
+}
 .img-box {
   width: 100%;
   height: auto;
+}
+.btn-film {
+  width: 180px;
+  margin-bottom: 25%;
 }
 }
