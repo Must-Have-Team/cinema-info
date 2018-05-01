@@ -1,9 +1,9 @@
   body {
-    background-color: #FFCC00;
+    /* background-color: #FFCC00; */
     margin: 0;
   }
   h1, h2, p, ul, li {
-    font-family: sans-serif;
+    font-family: Times, sans-serif;
   }
   ul.navbar-nav li a {
     color: #FFF;
@@ -26,7 +26,9 @@
   .nav-item a.active {
     background-color: grey;
   }
-
+  .container center {
+    position: relative;
+  }
   .footer {
    position: fixed;
    left: 0;

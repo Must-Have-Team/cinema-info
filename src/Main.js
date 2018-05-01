@@ -5,12 +5,15 @@ import {
 } from 'react-router-dom'
 
 import Home from "./Home";
-import Stuff from "./Stuff";
+import Cinema from "./CinemaList/Cinema";
 import Contact from "./Contact";
 import Login from "./Login/Login";
 import Navbar from './Navbar'
 import Footer from './Footer'
-import SingleMovie from './Singlemovie/SingleMovie'
+import SingleMovie from './Singlemovie/SingleMovie';
+import SingleCinema from './CinemaList/SingleCinema';
+import ButtonBack from './CinemaList/ButtonBack';
+
 
 class Main extends Component {
     render() {
@@ -18,15 +21,17 @@ class Main extends Component {
         <Router>
           <div>
           <Navbar />
-          
+
             <div className="content">
                 <Route exact path="/" component={Home}/>
-                <Route path="/stuff" component={Stuff}/>
+                <Route path="/cinemas" component={Cinema}/>
+                <Route path="/cinema/:id" component={SingleCinema}/>
+                <Route path="/cinemas" component={ButtonBack}/>
                 <Route path="/contact" component={Contact}/>
                 <Route path="/login" component={Login}/>
                 <Route path="/film/:id" component={SingleMovie}/>
             </div>
-            
+
             <Footer />
           </div>
         </Router>
