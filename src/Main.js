@@ -26,7 +26,6 @@ class Main extends Component {
                 <Route exact path="/" component={Home}/>
                 <Route path="/cinemas" component={Cinema}/>
                 <Route path="/cinema/:id" component={SingleCinema}/>
-                <Route path="/cinemas" component={ButtonBack}/>
                 <Route path="/contact" component={Contact}/>
                 <Route path="/login" component={Login}/>
                 <Route path="/film/:id" component={SingleMovie}/>

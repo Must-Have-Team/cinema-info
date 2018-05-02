@@ -9,7 +9,7 @@ class SingleCinema extends Component {
     return (
       <div>
         <div className="cinema-img-box">
-        <img src={target.url} className="cinema-img"/>
+        <img src={target.url} className="cinema-img" alt="cinema"/>
         </div>
         <h1 className="cinemaholl-name">{target.name}</h1>
         <p className="cinemaholl-street">{target.street}</p>
