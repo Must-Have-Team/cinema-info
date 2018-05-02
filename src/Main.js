@@ -9,7 +9,7 @@ import Stuff from "./Stuff";
 import Contact from "./Contact";
 import Login from "./Login/Login";
 import Navbar from './Navbar'
-import Footer from './Footer'
+import Footer from './footer/Footer'
 import SingleMovie from './Singlemovie/SingleMovie'
 
 class Main extends Component {
