@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SliderStore from './Slider-store';
 import Labels from './Labels';
-
+import { Link } from 'react-router-dom';
 import './Slider.css';
 
 class Slider extends Component {
@@ -57,16 +57,14 @@ class Slider extends Component {
   }
 
   renderSlides = (item, index) => {
-    return (
-      <div
+
+    return (<Link
         className={
         index === this.state.current ? 'slide-item active-slide' : 'slide-item'}
         key={item.name}
-      >
-      <a href="#" >
-        <img src={item.url} alt={item.name} />
-      </a>
-    </div>)
+        style={{ backgroundImage: `url(${item.url})` }}
+        to={`/film/${item.id}`}
+      ></Link>)
   }
 
   renderLabels = (item, index) => {
