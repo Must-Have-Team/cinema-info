@@ -1,7 +1,14 @@
 .searc-form{
-	position: relative;
-	background-color: #343A40;
+	position: absolute;
+	width: 75%;
+	top: 80px;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	background-color: rgba(0, 0, 0, 0.6);
 	z-index: 11;
+	border-top: 1px solid; 
+	border-radius: 5px;
 }
 .searc-form .cityes .city{
 	width: 100%;
@@ -22,26 +29,31 @@
 	display: block;
 	position: absolute;
 	width: calc(100% - 30px);
-	top: 40px;
+	top: 44px;
 	left: 15px;
 	padding: 0;
 	border-bottom-right-radius: 5px;
 	border-bottom-left-radius: 5px;
 
-	background-color: #fff;
+	background-color: rgba(0, 0, 0, 0.6);
 }
 .searc-form .search-out li{
 	width: 100%;
 	padding: 10px;
 	margin: 0;
-	color: #333;
 	list-style: none;
 }
 .searc-form .search-out li:hover{
-	background-color: green;
+	background-color: rgba(0, 128, 0, 0.6);
 }
 .searc-form .search-out li a{
 	display: block;
 	text-decoration: none;
-	color: #333;
+	color: #fff;
+}
+
+@media screen and (max-width: 991px){
+	.searc-form{
+		width: 100%;
+	}
 }

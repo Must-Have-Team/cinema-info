@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
 import './SearchForm.css'
 
 export default class SearchForm extends Component {
@@ -11,11 +13,10 @@ export default class SearchForm extends Component {
  	  this.setState({searchString : e.target.value});
 	}
 
-	//создаем елементы выпадающего списка фильмов
 	createList = (item, index) =>{
 		return(
 			<li key={item.name}>
-				<a href={item.url}>{item.name}</a>
+				<Link to={`/film/${item.id}`}>{item.name}</Link>
 			</li>
 		)
 	}
