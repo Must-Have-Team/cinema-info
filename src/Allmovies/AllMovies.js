@@ -9,7 +9,7 @@ class Movies extends Component{
   renderFilm = (el) => {
     return (
       <div className="film-box" key={el.id} id={el.id}>
-        <Link to={`/film/${el.id}`} style={{ textDecoration: 'none' }}>
+        <Link className="title-link" to={`/film/${el.id}`}>
           <img className="img-box" src={el.url} alt="filmImg" />
           <div className="film-info">
             <p className="film-name">{el.name}</p>
@@ -22,7 +22,7 @@ class Movies extends Component{
   }
   render(){
     return (
-      <div class="parallax">
+      <div className="parallax">
       <div className="film-list row ">
          <h2 className="actual mx-auto">Актуальне у кіно</h2>
         <div className="film-box-holder">

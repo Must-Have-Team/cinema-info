@@ -10,10 +10,10 @@ class Cinema extends Component {
   renderCinema =(el)=> {
     return (
       <div className="cinema-box" key={el.id} id={el.id}>
-        <Link to={`/cinema/${el.id}`} style={{ textDecoration: 'none' }}>
+        <Link className="title-link" to={`/cinema/${el.id}`}>
           <div className="cinema">
           <div>
-            <img className="cinema-logo " src={el.logo} />
+            <img className="cinema-logo " src={el.logo} alt="cinema-logo" />
           </div>
           <div className="cinema-info">
             <p className="cinema-name">{el.name}</p>
