@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import FilmStore from "../Allmovies/Film-store";
-import Stars from "../starRating/StarRating";
-import "./style.css";
+import React, { Component } from 'react';
+import FilmStore from '../Allmovies/Film-store';
+import Stars from '../starRating/StarRating';
+import './style.css';
 
 class SingleMovie extends Component {
   
