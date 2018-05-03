@@ -4,11 +4,11 @@ import Stars from "../starRating/StarRating";
 import "./style.css";
 
 class SingleMovie extends Component {
-  film = () => {
+  
+  render() {
     const target = FilmStore[this.props.match.params.id - 1];
-
-    return (
-      <div className="container exact">
+    return <div className="film">
+    <div className="container exact">
         <div className="row">
           <div className="col">
                 <img className="img" src={target.url} alt="image" />
@@ -34,10 +34,8 @@ class SingleMovie extends Component {
           </div>
         </div>
       </div>
-    );
-  };
-  render() {
-    return <div className="film">{this.film()}</div>;
+    
+    </div>;
   }
 }
 export default SingleMovie;

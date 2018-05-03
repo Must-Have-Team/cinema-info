@@ -15,6 +15,7 @@ import SingleCinema from './CinemaList/SingleCinema';
 import ButtonBack from './CinemaList/ButtonBack';
 
 
+
 class Main extends Component {
     render() {
       return (
