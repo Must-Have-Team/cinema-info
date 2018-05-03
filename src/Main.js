@@ -11,6 +11,7 @@ import Login from "./Login/Login";
 import Navbar from './Navbar'
 import Footer from './footer/Footer'
 import SingleMovie from './Singlemovie/SingleMovie'
+import Fetcher from './premieres/Premieres'
 
 class Main extends Component {
     render() {
@@ -25,6 +26,7 @@ class Main extends Component {
                 <Route path="/contact" component={Contact}/>
                 <Route path="/login" component={Login}/>
                 <Route path="/film/:id" component={SingleMovie}/>
+                <Route path="/fetcher" component={Fetcher}/>
             </div>
             
             <Footer />
