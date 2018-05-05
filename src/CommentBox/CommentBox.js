@@ -15,7 +15,7 @@ class CommentBox extends Component {
     this.pollInterval = null;
   }
   loadCommentsFromServer() {
-    axios.get('http://localhost:3001/api/comments')
+    axios.get('https://popcorn-studio.herokuapp.com/api/comments')
       .then(res => {
         this.setState({ data: res.data });
       })
@@ -25,14 +25,14 @@ class CommentBox extends Component {
     comment.id = Date.now();
     let newComments = comments.concat([comment]);
     this.setState({ data: newComments });
-    axios.post('http://localhost:3001/api/comments', comment)
+    axios.post('https://popcorn-studio.herokuapp.com/api/comments', comment)
       .catch(err => {
         console.error(err);
         this.setState({ data: comments });
       });
   }
   handleCommentDelete(id) {
-    axios.delete(`${'http://localhost:3001/api/comments'}/${id}`)
+    axios.delete(`${'https://popcorn-studio.herokuapp.com/api/comments'}/${id}`)
       .then(res => {
         console.log('Comment deleted');
       })
@@ -42,7 +42,7 @@ class CommentBox extends Component {
   }
   handleCommentUpdate(id, comment) {
     //sends the comment id and new author/text to our api
-    axios.put(`${'http://localhost:3001/api/comments'}/${id}`, comment)
+    axios.put(`${'https://popcorn-studio.herokuapp.com/api/comments'}/${id}`, comment)
       .catch(err => {
         console.log(err);
       })
