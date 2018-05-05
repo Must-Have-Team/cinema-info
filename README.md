@@ -16,3 +16,9 @@ npm i
 npm start
 ```
 
+##Get started React with server 
+
+```bash
+npm run start-dev
+```
+
