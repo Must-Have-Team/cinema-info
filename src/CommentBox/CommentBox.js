@@ -4,6 +4,8 @@ import CommentList from './CommentList';
 import CommentForm from './CommentForm';
 import style from './style';
 
+const BASE_URL = 'http://localhost:3001';
+// const BASE_URL = 'https://popcorn-studio.herokuapp.com';
 class CommentBox extends Component {
   constructor(props) {
     super(props);
@@ -25,7 +27,7 @@ class CommentBox extends Component {
     comment.id = Date.now();
     let newComments = comments.concat([comment]);
     this.setState({ data: newComments });
-    axios.post('https://popcorn-studio.herokuapp.com/api/comments', comment)
+    axios.post(`${BASE_URL}/api/comments`, comment)
       .catch(err => {
         console.error(err);
         this.setState({ data: comments });

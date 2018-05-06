@@ -4,7 +4,9 @@ var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var Comment = require('./model/comments');
+var Cinema = require('./model/cinemas');
 var secrets = require('./secrets');
+var axios = require('axios');
 
 var app = express();
 var router = express.Router();
@@ -12,12 +14,13 @@ var router = express.Router();
 var port = process.env.API_PORT || 3001;
 
 var mongoDB = secrets.requestSecret('db_uri');
-mongoose.connect(mongoDB, { useMongoClient: true })
+mongoose.connect(mongoDB)
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(express.static('build'));
 
 app.use(function(req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -71,11 +74,40 @@ router.route('/comments/:comment_id')
     Comment.remove({ _id: req.params.comment_id }, function(err, comment) {
       if (err)
         res.send(err);
-      res.json({ message: 'Comment has been deleted' })
+      res.json({ message: 'Comment has been deleted' });
     })
   });
 
 app.use('/api', router);
+
+router.route('/fetch-new-films')
+    .get(function(req, res) {
+      axios.get('http://kino-teatr.ua:8081/services/api/city/9/shows?apiKey=pol1kh111&size=10&date=2018-05-06&detalization=FULL')
+          .then(function(data) {
+              console.log(data.data.cinemas);
+              var cinemas = data.data.cinemas.map(function (item) {
+                  return {
+                    id: item.id,
+                      city_id: item.city_id,
+                      name: item.name,
+                      address: item.address
+                  };
+              });
+
+              Cinema.insertMany(cinemas, function (err, data) {
+                  if (err) {res.status(402).end()};
+                  res.send('success');
+              });
+          });
+    });
+
+router.route('/cinemas')
+    .get(function(req, res) {
+        Cinema.find({}, function(err, cinemas) {
+            if (err) { res.status(402).send(err); }
+            res.json(cinemas)
+        });
+    });
 
 app.listen(port, function() {
   console.log(`api running on port ${port}`);
