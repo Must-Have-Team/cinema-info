@@ -1,3 +1,7 @@
+.cinema-holl {
+  background:#10222e;
+  height: 100%;
+}
 .cinema-img-box {
   background: black;
 }
@@ -13,10 +17,10 @@
 .cinemaholl-name{
   position: absolute;
   z-index: 2;
-  top: 33%;
+  top: 34%;
   left:2%;
   right: 2%;
-  bottom: 0;
+  bottom: 40%;
   color:white;
   font-size: 5.5em;
   text-align: center;
@@ -26,19 +30,77 @@
 .cinemaholl-street {
   position: absolute;
   z-index: 2;
-  top:70%;
+  top:73%;
   right: 2%;
   left:75%;
   bottom: 0;
   color: white;
   font-size: 1.3em;
 }
-  .btn-back-to-cinema {
-    margin: 5% 2%;
-    opacity: 0.8;
+button {
+  background:#10222e;
+  padding: 6px;
+  border: none;
+  color: grey;
+  text-align: center;
+  margin: 0 auto;
+  width:100%;
+  cursor: pointer;
+}
+.technology-btn, .description-btn {
+  font-size: 1.5em;
+  color: white;
+  font-weight: 700;
+
+}
+
+.technology-btn:hover, .description-btn:hover{
+  cursor: pointer;
+  background: none;
+  color: #FFBF40;
+  outline: 0;
+}
+.technology-btn:focus, .description-btn:focus, button:focus {
+  outline: 0;
+  outline-color: none;
+
+}
+.btn-back-to-cinema {
+  padding-top: 30px;
+  opacity: 0.6;
+}
+button:focus {
+  outline: 0 !important;
+}
+.technology-btn:active {
+  color: #FFBF40;
+}
+.description-box, .technology-box {
+  color: white;
+  padding: 0 30px;
+  text-indent: 20px;
+  line-height: 1.4;
+  letter-spacing: 1.1;
+  text-align: justify;
+}
+
+@media only screen and (max-width:600px) {
+  .cinemaholl-name {
+    font-size: 3em;
+    top:53%;
   }
-  .seans {
-    text-align: center;
-    padding: 1%;
-    letter-spacing: 0.1rem;
+  .cinemaholl-street {
+    left:35%;
+    top: 85%;
   }
+}
+@media screen and (max-width:1100px) and (min-width:601px) {
+  .cinemaholl-name {
+    font-size: 4em;
+    top: 53%;
+  }
+  .cinemaholl-street {
+    top: 80%;
+    left:45%;
+  }
+}

@@ -6,6 +6,9 @@ import {
 } from 'react-router-dom'
 
 class Movies extends Component{
+  state = {
+    showFilm: false
+  }
   renderFilm = (el) => {
     return (
       <div className="film-box" key={el.id} id={el.id}>
@@ -20,6 +23,10 @@ class Movies extends Component{
 
     )
   }
+  handleFilmClick=()=> {
+    let show = this.state.showFilm;
+    this.setState({ showFilm: !show })
+  }
   render(){
     return (
       <div className="parallax">
@@ -29,7 +36,7 @@ class Movies extends Component{
           {FilmStore.map(this.renderFilm)}
         </div>
           <div className="btn-all-film mx-auto">
-            <button className="btn-film">Всі фільми</button>
+            <button className="btn-film" onClick={this.handleFilmClick}>Всі фільми</button>
           </div>
         </div>
       </div>
