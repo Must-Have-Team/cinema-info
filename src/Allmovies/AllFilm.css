@@ -17,9 +17,9 @@
 }
 .parallax::after {
   content: '';
-  transform: translateX(-1px) translateY(4px) scaleY(1.1);
-  background-image: url("../img/Webp.net-compress-image.jpg");
-  background-color: black;
+  transform: translateX(-1px) translateY(1px) scaleY(1.1);
+  background-image: url("../img/photoeditorsdk-export-min.png");
+  background-color: #140d0c;
   z-index: -1;
   opacity: 0.9;
   position: absolute;
