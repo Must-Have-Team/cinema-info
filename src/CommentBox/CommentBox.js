@@ -4,6 +4,8 @@ import CommentList from './CommentList';
 import CommentForm from './CommentForm';
 import style from './style';
 
+// const BASE_URL = 'http://localhost:3001';
+const BASE_URL = 'https://popcorn-studio-17.herokuapp.com';
 class CommentBox extends Component {
   constructor(props) {
     super(props);
@@ -15,7 +17,7 @@ class CommentBox extends Component {
     this.pollInterval = null;
   }
   loadCommentsFromServer() {
-    axios.get('https://popcorn-studio.herokuapp.com/api/comments')
+    axios.get('https://popcorn-studio-17.herokuapp.com/api/comments')
       .then(res => {
         this.setState({ data: res.data });
       })
@@ -25,14 +27,14 @@ class CommentBox extends Component {
     comment.id = Date.now();
     let newComments = comments.concat([comment]);
     this.setState({ data: newComments });
-    axios.post('https://popcorn-studio.herokuapp.com/api/comments', comment)
+    axios.post(`${BASE_URL}/api/comments`, comment)
       .catch(err => {
         console.error(err);
         this.setState({ data: comments });
       });
   }
   handleCommentDelete(id) {
-    axios.delete(`${'https://popcorn-studio.herokuapp.com/api/comments'}/${id}`)
+    axios.delete(`${'https://popcorn-studio-17.herokuapp.com/api/comments'}/${id}`)
       .then(res => {
         console.log('Comment deleted');
       })
@@ -42,7 +44,7 @@ class CommentBox extends Component {
   }
   handleCommentUpdate(id, comment) {
     //sends the comment id and new author/text to our api
-    axios.put(`${'https://popcorn-studio.herokuapp.com/api/comments'}/${id}`, comment)
+    axios.put(`${'https://popcorn-studio-17.herokuapp.com/api/comments'}/${id}`, comment)
       .catch(err => {
         console.log(err);
       })
@@ -51,7 +53,7 @@ class CommentBox extends Component {
     this.loadCommentsFromServer();
     if (!this.pollInterval) {
       this.pollInterval = setInterval(this.loadCommentsFromServer, 2000)
-    } 
+    }
   }
   componentWillUnmount() {
   this.pollInterval && clearInterval(this.pollInterval);
