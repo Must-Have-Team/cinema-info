@@ -9,6 +9,7 @@ var secrets = require('./secrets');
 var axios = require('axios');
 
 var app = express();
+var router = express.Router();
 
 var port = process.env.PORT || 3001;
 
@@ -19,7 +20,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static('build'));
+app.use('/', express.static(__dirname + '/build'));
 
 app.use(function(req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -31,7 +32,7 @@ app.use(function(req, res, next) {
     next();
 });
 
-app.route('/api/comments')
+router.route('/comments')
     .get(function(req, res) {
         Comment.find(function(err, comments) {
             if (err)
@@ -51,7 +52,7 @@ app.route('/api/comments')
         });
     });
 
-app.route('/api/comments/:comment_id')
+router.route('/comments/:comment_id')
     .put(function(req, res) {
         Comment.findById(req.params.comment_id, function(err, comment) {
             if (err)
@@ -73,7 +74,7 @@ app.route('/api/comments/:comment_id')
         })
     });
 
-app.route('/api/fetch-new-films')
+router.route('/fetch-new-films')
     .get(function(req, res) {
         axios.get(`http://kino-teatr.ua:8081/services/api/city/9/shows?apiKey=${process.env.API_KEY}&size=10&date=2018-05-06&detalization=FULL`)
             .then(function(data) {
@@ -94,13 +95,15 @@ app.route('/api/fetch-new-films')
             });
     });
 
-app.route('/api/cinemas')
+router.route('/cinemas')
     .get(function(req, res) {
         Cinema.find({}, function(err, cinemas) {
             if (err) { res.status(402).send(err); }
             res.json(cinemas)
         });
     });
+
+app.use('/api', router);
 
 app.listen(port, function() {
     console.log(`api running on port ${port}`);
