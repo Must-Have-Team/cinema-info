@@ -5,6 +5,7 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var Comment = require('./model/comments');
 var Cinema = require('./model/cinemas');
+var Films = require('./model/films');
 var secrets = require('./secrets');
 var axios = require('axios');
 
@@ -102,6 +103,23 @@ router.route('/cinemas')
             res.json(cinemas)
         });
     });
+
+router.route('/cinemas')
+    .get(function (req, res) {
+        Cinema.find({}, function (err, cinemas) {
+            if (err) { res.status(402).send(err); }
+            res.json(cinemas)
+        });
+    });
+
+router.route('/films')
+    .get(function (req, res) {
+        Films.find({}, function (err, cinemas) {
+            if (err) { res.status(402).send(err); }
+            res.json(cinemas)
+        });
+    });
+
 
 app.use('/api', router);
 
