@@ -12,7 +12,6 @@ import Navbar from './Navbar'
 import Footer from './Footer'
 import SingleMovie from './Singlemovie/SingleMovie';
 import SingleCinema from './CinemaList/SingleCinema';
-import ButtonBack from './CinemaList/ButtonBack';
 import CommentBox from './CommentBox/CommentBox';
 
 
