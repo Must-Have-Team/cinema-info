@@ -1,35 +1,47 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-
+import axios from 'axios';
 import './SearchForm.css'
+
+const BASE_URL = 'http://localhost:3001';
+// const BASE_URL = 'https://popcorn-studio.herokuapp.com';
+
 
 export default class SearchForm extends Component {
 	constructor(props){
 		super(props);
-		this.state = {searchString : ''}
+		this.state = { searchString : '', data : [] }
 	}
 	
+	componentDidMount(){
+    axios.get(`${BASE_URL}/api/films`)
+      .then(res => {
+        this.setState({ data: res.data });
+      })
+	}
+
 	handleChange = (e) => {
  	  this.setState({searchString : e.target.value});
 	}
 
 	createList = (item, index) =>{
 		return(
-			<li key={item.name}>
-				<Link to={`/film/${item.id}`}>{item.name}</Link>
+			<li key={item.title}>
+				<Link to={`/film/${item.id}`}>{item.title} ( {item.title_orig} )</Link>
 			</li>
 		)
 	}
 
 	render(){
-		let libraries = this.props.items,
+		let libraries = this.state.data,
 				searchString = this.state.searchString.trim().toLowerCase(),
 				out = [];
 
 		if(searchString.length > 0){
       libraries.filter(elem => {
-      	if(elem.name.toLowerCase().match( searchString )){
-      		if(out.length !== 10){
+      	if(elem.title.toLowerCase().match( searchString ) ||
+      	   elem.title_orig.toLowerCase().match( searchString )){
+      		if(out.length !== 5){
 	      		out.push( elem );
       		}
       	}
