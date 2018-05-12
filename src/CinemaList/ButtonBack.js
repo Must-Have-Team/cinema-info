@@ -7,9 +7,9 @@ import './SingleCinema.css';
 class ButtonBack extends Component {
   render() {
     return (
-      <div className='btn-back-to-cinema'>
+      <div>
         <Link to={`/cinemas`}>
-        <button type="button">Вернутись до кінотеатрів</button>
+          <button className="btn-back-to-cinema">Вернутись до кінотеатрів</button>
         </Link>
       </div>
     )

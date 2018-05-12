@@ -1,21 +1,32 @@
 import React, {Component} from 'react';
+import axios from 'axios';
 import './AllFilm.css';
-import FilmStore from './Film-store';
 import {
   Link
 } from 'react-router-dom'
 
+const BASE_URL = 'http://localhost:3001';
+
 class Movies extends Component{
-  state = {
-    showFilm: false
+  constructor(props) {
+    super(props);
+    this.state = ({ data: [] })
   }
+
+  componentDidMount() {
+    axios.get(`${BASE_URL}/api/films`)
+      .then(res => {
+        this.setState({ data: res.data });
+      })
+  }
+
   renderFilm = (el) => {
     return (
       <div className="film-box" key={el.id} id={el.id}>
         <Link className="title-link" to={`/film/${el.id}`}>
           <img className="img-box" src={el.url} alt="filmImg" />
           <div className="film-info">
-            <p className="film-name">{el.name}</p>
+            <p className="film-name">{el.title}</p>
             <span className="film-raiting ">{el.raiting}</span>
           </div>
         </Link>
@@ -33,7 +44,7 @@ class Movies extends Component{
       <div className="film-list row ">
          <h2 className="actual mx-auto">Актуальне у кіно</h2>
         <div className="film-box-holder">
-          {FilmStore.map(this.renderFilm)}
+          {this.state.data.map(this.renderFilm)}
         </div>
           <div className="btn-all-film mx-auto">
             <button className="btn-film" onClick={this.handleFilmClick}>Всі фільми</button>
