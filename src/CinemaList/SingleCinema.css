@@ -1,5 +1,5 @@
 .cinema-holl {
-  background:#10222e;
+ background:#10222e;
   height: 100%;
 }
 .cinema-img-box {
@@ -37,7 +37,7 @@
   color: white;
   font-size: 1.3em;
 }
-button {
+.description-btn, .technology-btn, .btn-back-to-cinema{
   background:#10222e;
   padding: 6px;
   border: none;
@@ -51,7 +51,6 @@ button {
   font-size: 1.5em;
   color: white;
   font-weight: 700;
-
 }
 
 .technology-btn:hover, .description-btn:hover{
@@ -60,18 +59,16 @@ button {
   color: #FFBF40;
   outline: 0;
 }
-.technology-btn:focus, .description-btn:focus, button:focus {
+.technology-btn:focus, .description-btn:focus, .btn-back-to-cinema:focus {
   outline: 0;
   outline-color: none;
-
 }
 .btn-back-to-cinema {
   padding-top: 30px;
   opacity: 0.6;
+  background: none;
 }
-button:focus {
-  outline: 0 !important;
-}
+
 .technology-btn:active {
   color: #FFBF40;
 }
@@ -102,5 +99,10 @@ button:focus {
   .cinemaholl-street {
     top: 80%;
     left:45%;
+  }
+  .seans {
+    text-align: center;
+    padding: 1%;
+    letter-spacing: 0.1rem;
   }
 }

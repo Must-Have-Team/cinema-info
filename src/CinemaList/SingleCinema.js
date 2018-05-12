@@ -1,44 +1,47 @@
 import React, { Component } from 'react';
-import CinemaStore from './CinemaStore';
+import axios from 'axios';
 import ButtonBack from './ButtonBack';
 import './SingleCinema.css';
 
+const BASE_URL = 'http://localhost:3001';
+
 class SingleCinema extends Component {
-  state = {
-    showTechnology: false,
-    showDescrioption: false
+  constructor(props) {
+    super(props);
+    this.state = ({
+      data: '',
+      showTechnology: false,
+      showDescrioption: false
+     })
   }
 
-  handleClickTechnology = ()=>{
+  componentWillMount() {
+    axios.get(`${BASE_URL}/api/cinemas`)
+      .then(res => {
+        const currentCinema = res.data.filter(item =>
+          item.id.toString() === this.props.match.params.id);
+        this.setState({ data: currentCinema });
+      })
+  }
+
+
+  handleClickTechnology = () => {
     const show = this.state.showTechnology;
     this.setState({ showTechnology: !show });
-  }
+    }
 
-  handleDescriptionClick =()=> {
+  handleDescriptionClick =() => {
     const isShow = this.state.showDescrioption;
     this.setState({ showDescrioption: !isShow });
   }
 
-  cinema =() => {
-    const target = CinemaStore[this.props.match.params.id-1];
-    return (
-      <div>
-        <div className="cinema-img-box">
-        <img src={target.url} className="cinema-img" alt={target.name}/>
-        </div>
-        <h1 className="cinemaholl-name">{target.name}</h1>
-        <p className="cinemaholl-street">{target.street}</p>
-      </div>
-    )
-  }
 
   render() {
-
     let technology = null;
     if(this.state.showTechnology) {
-      const target = CinemaStore[this.props.match.params.id - 1];
+      const item = this.state.data[0];
       technology = (
-        <div className="technology-box">{target.technology.split('\n').map((item, key) => {
+        <div className="technology-box">{item.technology.split('\n').map((item, key) => {
           return <p key={key}>{item}<br /></p>
         })}</div>
       )
@@ -47,17 +50,33 @@ class SingleCinema extends Component {
     let description = null;
 
     if(this.state.showDescrioption) {
-      const target = CinemaStore[this.props.match.params.id - 1];
+      const item = this.state.data[0];
 
       description = (
-        <div className="description-box">{target.description.split('\n').map((item, key) => {
+        <div className="description-box">{item.description.split('\n').map((item, key) => {
           return <p key={key}>{item}<br /></p>
         })}</div>
       )
     }
+
+    let item = '';
+    let stateData = this.state.data[0];
+
+    if (this.state.data.length === 0) {
+      item = <div>Loading...</div>
+    } else {
+      item = <div>
+        <div className="cinema-img-box">
+          <img src={stateData.url} className="cinema-img" alt="cinema" />
+        </div>
+        <h1 className="cinemaholl-name">{stateData.name}</h1>
+        <p className="cinemaholl-street">{stateData.address}</p>
+      </div>
+    }
+
     return(
       <div className="cinema-holl" onClick={this.cinema}>
-        {this.cinema()}
+        {item}
       <div className="description-holder">
           <button className="description-btn" type="button"
          onClick={this.handleDescriptionClick}>Опис</button>
@@ -67,9 +86,8 @@ class SingleCinema extends Component {
         <button className="technology-btn" type="button"
          onClick={this.handleClickTechnology}>Технології</button>
       </div>
-
-        {technology}
-        <ButtonBack />
+          {technology}
+       <ButtonBack />
       </div>
     )
   }

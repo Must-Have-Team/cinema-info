@@ -1,12 +1,25 @@
 import React, { Component } from 'react';
-import CinemaStore from './CinemaStore';
+import axios from 'axios';
 import './Cinema.css';
 import {
   Link
 } from 'react-router-dom';
 
+const BASE_URL = 'http://localhost:3001';
 
 class Cinema extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      data: []
+    }
+  }
+  componentDidMount() {
+    axios.get(`${BASE_URL}/api/cinemas`)
+    .then(res => {
+      this.setState({ data: res.data })
+    })
+  }
   renderCinema =(el)=> {
     return (
       <div className="cinema-box" key={el.id} id={el.id}>
@@ -38,7 +51,7 @@ class Cinema extends Component {
           <option>Ужгород</option>
         </select></h2>
          <div className="cinema-box-holder">
-          {CinemaStore.map(this.renderCinema)}
+          {this.state.data.map(this.renderCinema)}
         </div>
       </div>
     )
