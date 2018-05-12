@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
 import SliderStore from './Slider-store';
 import Labels from './Labels';
-import { Link } from 'react-router-dom';
+
+import SearchForm from '../SearchForm/SearchForm';
+
 import './Slider.css';
 
 class Slider extends Component {
-	constructor(props){
-		super(props);
+  constructor(props){
+    super(props);
     this.state = { current : 0, isHover : false };
-	}
-
+  }
+  
   handleLeftClick = () => {
     var cs = this.state.current;
     cs -= 1;
@@ -85,14 +89,15 @@ class Slider extends Component {
       this.setTimer();
     }
     return (
-    	<div
+      <div
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave ={this.handleMouseLeave}
         className="slider"
       >
-    		<div className="slides">
+        
+        <div className="slides">
           {SliderStore.map(this.renderSlides)}
-    		</div>
+        </div>
         <div className="labels">
           {SliderStore.map(this.renderLabels)}
         </div>
@@ -102,6 +107,7 @@ class Slider extends Component {
           style={{'backgroundImage' : 'url(images/slider/toleft.png)'}}>
         </div>
         </div>
+        <SearchForm/>
         <div className="btn btn-right" onClick={this.handleRightClick}>
           <div
             className="arrow-right"
@@ -109,7 +115,7 @@ class Slider extends Component {
           >
           </div>
         </div>
-    	</div>
+      </div>
     );
   }
 }
