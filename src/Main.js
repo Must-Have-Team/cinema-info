@@ -1,27 +1,40 @@
 import React, { Component } from "react";
-import { Route, NavLink, BrowserRouter } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route
+} from 'react-router-dom'
+
 import Home from "./Home";
-import Stuff from "./Stuff";
+import Cinema from "./CinemaList/Cinema";
 import Contact from "./Contact";
 import Login from "./Login/Login";
 import Navbar from './Navbar'
 import Footer from './Footer'
+import SingleMovie from './Singlemovie/SingleMovie';
+import SingleCinema from './CinemaList/SingleCinema';
+import CommentBox from './CommentBox/CommentBox';
+
 
 class Main extends Component {
     render() {
       return (
-        <BrowserRouter>
+        <Router>
           <div>
           <Navbar />
+
             <div className="content">
                 <Route exact path="/" component={Home}/>
-                <Route path="/stuff" component={Stuff}/>
+                <Route path="/cinemas" component={Cinema}/>
+                <Route path="/cinema/:id" component={SingleCinema}/>
                 <Route path="/contact" component={Contact}/>
                 <Route path="/login" component={Login}/>
+                <Route path="/film/:id" component={SingleMovie}/>
+                <Route path="/comment" component={CommentBox}/>
             </div>
+
             <Footer />
           </div>
-        </BrowserRouter>
+        </Router>
       );
     }
   }

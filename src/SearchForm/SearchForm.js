@@ -11,7 +11,7 @@ export default class SearchForm extends Component {
 		super(props);
 		this.state = { searchString : '', data : [] }
 	}
-	
+
 	componentDidMount(){
     axios.get(`${BASE_URL}/api/films`)
       .then(res => {
@@ -56,8 +56,8 @@ export default class SearchForm extends Component {
 		    	  <div className="col-8 position-relative my-3">
 					    <input
 					      type="text"
-					      onChange={this.handleChange} 
-					      placeholder="Введіть назву фільму" 
+					      onChange={this.handleChange}
+					      placeholder="Введіть назву фільму"
 					      className="searc-input"
 					    />
 					    <ul className="search-out">{out.map(this.createList)}</ul>
