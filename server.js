@@ -10,7 +10,7 @@ var axios = require('axios');
 var Films = require('./model/films');
 var Img = require('./model/img')
 var CinemaSession = require('./model/cinemaSessions')
-var API_KEY= 'pol1kh111';
+
 
 
 var app = express();
@@ -25,7 +25,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-// app.use('/', express.static(__dirname + '/build'));
+app.use('/', express.static(__dirname + '/build'));
 
 app.use(function(req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -81,8 +81,7 @@ router.route('/comments/:comment_id')
 
 router.route('/fetch-new-cinemas')
     .get(function(req, res) {
-        // axios.get(`http://kino-teatr.ua:8081/services/api/city/9/shows?apiKey=${process.env.API_KEY}&size=10&date=2018-05-06&detalization=FULL`)
-        axios.get(`http://kino-teatr.ua:8081/services/api/city/9/shows?apiKey=${API_KEY}&size=10&date=2018-05-06&detalization=FULL`)
+        axios.get(`http://kino-teatr.ua:8081/services/api/city/9/shows?apiKey=${process.env.API_KEY}&size=10&date=2018-05-06&detalization=FULL`)
             .then(function(data) {
                 console.log(data.data.cinemas);
                 var cinemas = data.data.cinemas.map(function (item) {
