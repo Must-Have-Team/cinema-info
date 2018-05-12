@@ -1,75 +1,100 @@
 import React, { Component } from 'react';
-import CinemaStore from './CinemaStore';
+import axios from 'axios';
 import ButtonBack from './ButtonBack';
 import './SingleCinema.css';
 
+const BASE_URL = 'http://localhost:3001';
+
+
 class SingleCinema extends Component {
-  state = {
-    showTechnology: false,
-    showDescrioption: false
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [],
+      showTechnology: false,
+      showDescrioption: false
+    }
   }
 
-  handleClickTechnology = ()=>{
+  componentDidMount() {
+    axios.get(`${BASE_URL}/api/cinemas`)
+      .then(res => {
+        const currentData = res.data.filter( item =>
+           {return item.id.toString() === this.props.match.params.id})
+        this.setState({ data: currentData })
+      })
+  }
+
+  handleClickTechnology = () => {
     const show = this.state.showTechnology;
     this.setState({ showTechnology: !show });
-  }
+    }
 
-  handleDescriptionClick =()=> {
+  handleDescriptionClick =() => {
     const isShow = this.state.showDescrioption;
     this.setState({ showDescrioption: !isShow });
   }
 
   cinema =() => {
-    const target = CinemaStore[this.props.match.params.id-1];
-    return (
-      <div>
-        <div className="cinema-img-box">
-        <img src={target.url} className="cinema-img" alt={target.name}/>
+    const item = this.state.data[0];
+    if(!item) {
+      return (
+        <div>Loading</div>
+      )
+    }else{
+      return (
+        <div>
+          <div className="cinema-img-box">
+            <img src={item.url} className="cinema-img" alt={item.name} />
+          </div>
+          <h1 className="cinemaholl-name">{item.name}</h1>
+          <p className="cinemaholl-street">{item.street}</p>
         </div>
-        <h1 className="cinemaholl-name">{target.name}</h1>
-        <p className="cinemaholl-street">{target.street}</p>
-      </div>
-    )
+      )
+    }
+    console.log(item);
   }
 
   render() {
-
     let technology = null;
-    if(this.state.showTechnology) {
-      const target = CinemaStore[this.props.match.params.id - 1];
+    if (this.state.showTechnology) {
+        const item = this.state.data[0];
+        console.log(item.technology);
       technology = (
-        <div className="technology-box">{target.technology.split('\n').map((item, key) => {
-          return <p key={key}>{item}<br /></p>
-        })}</div>
-      )
-    }
+        <div className="technology-box" >
+          {item.technology.split('\n').map((item, key) => {
+            return <p key={key}>{item}<br /></p>
+          })
+          }
+        </div >
+      )}
 
     let description = null;
-
-    if(this.state.showDescrioption) {
-      const target = CinemaStore[this.props.match.params.id - 1];
-
+    if (this.state.showDescrioption) {
+        const item = this.state.data[0];
       description = (
-        <div className="description-box">{target.description.split('\n').map((item, key) => {
-          return <p key={key}>{item}<br /></p>
-        })}</div>
-      )
-    }
-    return(
-      <div className="cinema-holl" onClick={this.cinema}>
-        {this.cinema()}
-      <div className="description-holder">
-          <button className="description-btn" type="button"
-         onClick={this.handleDescriptionClick}>Опис</button>
-      </div>
-        {description}
-      <div className="technology-holder">
-        <button className="technology-btn" type="button"
-         onClick={this.handleClickTechnology}>Технології</button>
-      </div>
+         <div className= "description-box" >
+         {item.description.split('\n').map((item, key) => {
+            return <p key={key}>{item}<br /></p>
+            })
+        }
+        </div >
+      )}
 
-        {technology}
-        <ButtonBack />
+     return(
+        <div className="cinema-holl" onClick={this.cinema}>
+          {this.cinema()}
+          <div className="description-holder">
+            <button className="description-btn"
+              onClick={this.handleDescriptionClick}>Опис</button>
+          </div>
+          {description}
+          <div className="technology-holder">
+            <button className="technology-btn" 
+              onClick={this.handleClickTechnology}>Технології</button>
+          </div >
+          {technology}
+       <ButtonBack />
       </div>
     )
   }

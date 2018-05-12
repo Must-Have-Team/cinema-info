@@ -8,7 +8,7 @@ export default class SearchForm extends Component {
 		super(props);
 		this.state = {searchString : ''}
 	}
-	
+
 	handleChange = (e) => {
  	  this.setState({searchString : e.target.value});
 	}
@@ -45,8 +45,8 @@ export default class SearchForm extends Component {
 		    	  <div className="col-8 position-relative my-3">
 					    <input
 					      type="text"
-					      onChange={this.handleChange} 
-					      placeholder="Введіть назву фільму" 
+					      onChange={this.handleChange}
+					      placeholder="Введіть назву фільму"
 					      className="searc-input"
 					    />
 					    <ul className="search-out">{out.map(this.createList)}</ul>
