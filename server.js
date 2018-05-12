@@ -8,6 +8,11 @@ var Cinema = require('./model/cinemas');
 var Films = require('./model/films');
 var secrets = require('./secrets');
 var axios = require('axios');
+var Films = require('./model/films');
+var Img = require('./model/img')
+var CinemaSession = require('./model/cinemaSessions')
+
+
 
 var app = express();
 var router = express.Router();
@@ -75,7 +80,7 @@ router.route('/comments/:comment_id')
         })
     });
 
-router.route('/fetch-new-films')
+router.route('/fetch-new-cinemas')
     .get(function(req, res) {
         axios.get(`http://kino-teatr.ua:8081/services/api/city/9/shows?apiKey=${process.env.API_KEY}&size=10&date=2018-05-06&detalization=FULL`)
             .then(function(data) {
@@ -94,6 +99,114 @@ router.route('/fetch-new-films')
                     res.send('success');
                 });
             });
+    });
+  
+    router.route('/fetch-new-films')
+    .get(function(req, res) {
+      axios.get('http://kino-teatr.ua:8081/services/api/city/9/shows?apiKey=pol1kh111&size=2000&detalization=FULL')
+      .then(function(data) {
+    
+        var films = data.data.films.map(function (item) {
+        
+          return {
+           "id": item.id,
+           "title": item.title,
+           "title_orig": item.title_orig,
+           "premiere_ukraine": item.premiere_ukraine,
+           "premiere_world": item.premiere_world,
+           "duration": item.duration,
+           "year": item.year ,
+           "age_limit": item.age_limit ,
+           "rating": item.rating ,
+           "votes": item.votes ,
+           "tmdb_rating": item.tmdb_rating ,
+           "tmdb_votes": item.tmdb_votes ,
+           "imdb_id": item.imdb_id,
+           "total_shows": item.total_shows ,
+           "url": item.url,
+           "studio_ids": item.studio_ids.map(item => item),
+           "country_ids": item.country_ids.map(item => item),
+           "genre_ids": item.genre_ids.map(item => item),
+         };
+       });
+    
+        Films.insertMany(films, function (err, data) {
+          if (err) {res.status(402).end()};
+          res.send('success');
+        });
+      });
+    });
+    router.route('/films')
+    .get(function(req, res) {
+        Films.find({}, function(err, item) {
+            if (err) { res.status(402).send(err); }
+            res.json(item)
+        });
+    });
+
+    router.route('/fetch-new-img')
+    .get(function(req, res) {
+      axios.get('http://localhost:3001/api/films')
+      .then(function(data) {
+    data.data.map(item => {
+        axios.get(`http://kino-teatr.ua:8081/services/api/film/${item.id}/poster?apiKey=pol1kh111&width=300&height=400&ratio=1`)
+        .then(function(data) {
+            let base64 = {
+                "id": item.id,
+                "dataUrl": data.data
+            };
+            Img.insertMany(base64);
+        })
+    })  
+      });
+    });
+    router.route('/fetch-cinemas-sessions')
+    .get(function(req, res) {
+      axios.get('http://localhost:3001/api/cinemas')
+      .then(function(data) {
+    data.data.map(item => {
+        axios.get(`http://kino-teatr.ua:8081/services/api/cinema/${item.id}/shows?apiKey=pol1kh111&size=100&detalization=FULL`)
+        .then(function(data) {
+            console.log(data.data.content)
+            var sessions = data.data.content.map(function(item) {
+                return {
+                    "id": item.id,
+                    "begin": item.begin,
+                    "end": item.end,
+                    "film_id": item.film_id,
+                    "hall_id": item.hall_id,
+                    "times": item.times.map(item => {
+                        return {
+                          "id" : item.id ,
+                          "time": item.time ,
+                          "prices": item.prices ,
+                          "purchase_allowed": item.purchase_allowed 
+                        }
+                      })
+                }
+            })
+            CinemaSession.insertMany(sessions, function (err, data) {
+                if (err) {res.status(402).end()};
+                res.send('success');
+              });
+        })
+    })  
+      });
+    });
+    router.route('/cinema-sessions')
+    .get(function(req, res) {
+        CinemaSession.find({}, function(err, el) {
+            if (err) { res.status(402).send(err); }
+            res.json(el)
+        });
+    });
+
+    router.route('/images')
+    .get(function(req, res) {
+        Img.find({}, function(err, el) {
+            if (err) { res.status(402).send(err); }
+            res.json(el)
+        });
     });
 
 router.route('/cinemas')
