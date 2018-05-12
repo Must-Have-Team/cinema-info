@@ -3,7 +3,8 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var FilmsSchema = new Schema ({
+
+var FilmsSchema = new Schema({
   "id": Number,
   "title": String,
   "title_orig": String,
@@ -19,15 +20,20 @@ var FilmsSchema = new Schema ({
   "imdb_id": String,
   "total_shows": Number,
   "url": String,
-  "description": String,
-  "studio_ids": [
-    Number
-  ],
-  "country_ids": [
-    Number
-  ],
-  "genre_ids": [Number]
-
-})
+  "description" : String,
+  "studios": [{
+    "id": Number,
+    "name": String
+  }],
+  "countries": [{
+    "id": Number,
+    "name": String
+  }],
+  "genres": [{
+    "id": Number,
+    "name": String
+  }]
+});
 
 module.exports = mongoose.model('Films', FilmsSchema);
+
