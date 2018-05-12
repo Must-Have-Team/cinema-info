@@ -6,7 +6,6 @@ import Labels from './Labels';
 
 import SearchForm from '../SearchForm/SearchForm';
 
-
 import './Slider.css';
 
 class Slider extends Component {
@@ -62,16 +61,14 @@ class Slider extends Component {
   }
 
   renderSlides = (item, index) => {
-    return (
-      <div
+
+    return (<Link
         className={
         index === this.state.current ? 'slide-item active-slide' : 'slide-item'}
         key={item.name}
-      >
-      <a href="#" >
-        <img src={item.url} alt={item.name} />
-      </a>
-    </div>)
+        style={{ backgroundImage: `url(${item.url})` }}
+        to={`/film/${item.id}`}
+      ></Link>)
   }
 
   renderLabels = (item, index) => {
