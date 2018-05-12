@@ -5,6 +5,7 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var Comment = require('./model/comments');
 var Cinema = require('./model/cinemas');
+var Session = require('./model/sessions');
 var Films = require('./model/films');
 var secrets = require('./secrets');
 var axios = require('axios');
@@ -209,11 +210,48 @@ router.route('/fetch-new-cinemas')
         });
     });
 
+    router.route('/fetch-new-session')
+    .get(function(req, res) {
+      axios.get('http://kino-teatr.ua:8081/services/api/city/9/shows?apiKey=pol1kh111&size=1000&detalization=FULL')
+      .then(function(data) {
+        var session = data.data.content.map(function (item) {
+          return {
+           "id": item.id ,
+           "begin": item.begin ,
+           "end": item.end ,
+           "film_id": item.film_id ,
+           "hall_id": item.hall_id ,
+           "times": item.times.map(item => {
+            return {
+              "id" : item.id ,
+              "time": item.time ,
+              "prices": item.prices ,
+              "purchase_allowed": item.purchase_allowed 
+            }
+          })
+         };
+       });
+    
+        Session.insertMany(session, function (err, data) {
+          if (err) {res.status(402).end()};
+          res.send('success');
+        });
+      });
+    });
+
 router.route('/cinemas')
     .get(function(req, res) {
         Cinema.find({}, function(err, cinemas) {
             if (err) { res.status(402).send(err); }
             res.json(cinemas)
+        });
+    });
+
+    router.route('/sessions')
+    .get(function(req, res) {
+        Session.find({}, function(err, sessions) {
+            if (err) { res.status(402).send(err); }
+            res.json(sessions)  
         });
     });
 
