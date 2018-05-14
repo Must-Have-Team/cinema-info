@@ -3,6 +3,7 @@ import axios from 'axios';
 import Stars from '../starRating/StarRating';
 import './style.css';
 import GetPoster from '../Poster/GetPoster';
+import DataTableFilm from '../DataTable/DataTableFilm'
 
 const BASE_URL = 'http://localhost:3001';
 
@@ -42,7 +43,9 @@ class SingleMovie extends Component {
                 <div dangerouslySetInnerHTML={{ __html: stateData.description }}></div>
               </div>
             </div>
+      
           </div>
+          <DataTableFilm filmId={stateData.id} />
         </div>
     }
     return (
