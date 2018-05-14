@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import './AllFilm.css';
+import GetPoster from '../Poster/GetPoster';
 import {
   Link
 } from 'react-router-dom'
@@ -24,7 +25,7 @@ class Movies extends Component{
     return (
       <div className="film-box" key={el.id} id={el.id}>
         <Link className="title-link" to={`/film/${el.id}`}>
-          <img className="img-box" src={el.url} alt="filmImg" />
+        <GetPoster filmId={el.id}/>
           <div className="film-info">
             <p className="film-name">{el.title}</p>
             <span className="film-raiting ">{el.raiting}</span>
