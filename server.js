@@ -12,6 +12,7 @@ var axios = require('axios');
 var Films = require('./model/films');
 var Img = require('./model/img')
 var CinemaSession = require('./model/cinemaSessions')
+var Halls = require('./model/halls')
 
 
 
@@ -150,11 +151,14 @@ router.route('/fetch-new-cinemas')
       axios.get('http://localhost:3001/api/films')
       .then(function(data) {
     data.data.map(item => {
-        axios.get(`http://kino-teatr.ua:8081/services/api/film/${item.id}/poster?apiKey=pol1kh111&width=300&height=400&ratio=1`)
+        axios.get(`http://kino-teatr.ua:8081/services/api/film/${item.id}/poster?apiKey=pol1kh111&width=600&height=800&ratio=1`, { responseType: 'arraybuffer' })
         .then(function(data) {
+            let image = new Buffer(data.data, 'binary').toString('base64')
+              let dataUrl = `data:${data.headers['content-type'].toLowerCase()};base64,${image}`;
+
             let base64 = {
                 "id": item.id,
-                "dataUrl": data.data
+                "dataUrl": dataUrl
             };
             Img.insertMany(base64);
         })
@@ -166,7 +170,7 @@ router.route('/fetch-new-cinemas')
       axios.get('http://localhost:3001/api/cinemas')
       .then(function(data) {
     data.data.map(item => {
-        axios.get(`http://kino-teatr.ua:8081/services/api/cinema/${item.id}/shows?apiKey=pol1kh111&size=100&detalization=FULL`)
+        axios.get(`http://kino-teatr.ua:8081/services/api/cinema/${item.id}/shows?apiKey=pol1kh111&size=2000&detalization=FULL`)
         .then(function(data) {
             console.log(data.data.content)
             var sessions = data.data.content.map(function(item) {
@@ -186,10 +190,7 @@ router.route('/fetch-new-cinemas')
                       })
                 }
             })
-            CinemaSession.insertMany(sessions, function (err, data) {
-                if (err) {res.status(402).end()};
-                res.send('success');
-              });
+            CinemaSession.insertMany(sessions);
         })
     })  
       });
@@ -270,10 +271,18 @@ router.route('/films')
             res.json(cinemas)
         });
     });
-
+router.route('/halls')
+    .get(function(req, res) {
+      Halls.find({}, function(err, cinemas) {
+        if (err) { res.status(402).send(err); }
+        res.json(cinemas)
+      });
+    });
 
 app.use('/api', router);
 
 app.listen(port, function() {
     console.log(`api running on port ${port}`);
 });
+
+

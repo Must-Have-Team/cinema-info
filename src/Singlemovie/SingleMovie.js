@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Stars from '../starRating/StarRating';
 import './style.css';
+import GetPoster from '../Poster/GetPoster';
 
 const BASE_URL = 'http://localhost:3001';
 
@@ -31,7 +32,7 @@ class SingleMovie extends Component {
           <div className="container exact">
             <div className="row">
               <div className="col">
-                <img className="img" src={stateData.url} alt="image" />
+                <GetPoster filmId={stateData.id}/>
                 <h1>{stateData.title}({stateData.title_orig})</h1>
                 <p>{stateData.raiting}</p>
                 <p>Rate this movie</p>
