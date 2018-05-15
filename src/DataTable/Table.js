@@ -20,7 +20,7 @@ class ResponsiveTable extends Component {
         this.getName = this.getName.bind(this);
     }
     
-    componentWillMount(){
+    componentDidMount(){
         axios.get(`${BASE_URL}/api/films`)
           .then(res => {
             this.setState({ filmsData: res.data });
