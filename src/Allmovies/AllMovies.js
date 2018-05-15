@@ -6,7 +6,7 @@ import {
   Link
 } from 'react-router-dom'
 
-const BASE_URL = 'http://localhost:3001';
+const BASE_URL = 'https://popcorn-studio-17.herokuapp.com';
 
 class Movies extends Component{
   constructor(props) {
