@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './styles.css';
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:3001';
+const BASE_URL = 'https://popcorn-studio-17.herokuapp.com';
 
 
 class DataTableFilm extends Component {
@@ -19,7 +19,7 @@ class DataTableFilm extends Component {
         };
         this.filterSessions = this.filterSessions.bind(this);
         this.renderTable = this.renderTable.bind(this);
-        this.getCinemaName = this.getCinemaName.bind(this)
+        this.getCinemaName = this.getCinemaName.bind(this);
     }
     
     componentDidMount(){
@@ -49,14 +49,36 @@ class DataTableFilm extends Component {
                 const multiplex = res.data.filter(item => item.cinema_id === 337)
                 const multiplexHalls = multiplex.map( item => {
                     return item.id
-                } )
-                console.log('SDSDSDS', multiplexHalls);
-                this.setState({
-                    multiplex: multiplexHalls
                 })
-                
+                const planeta = res.data.filter(item => item.cinema_id === 207)
+                const planetaKino = planeta.map( item => {
+                    return item.id
+                })
+                const dovzhenka = res.data.filter(item => item.cinema_id === 98)
+                const dovzhenkaHall = dovzhenka.map( item => {
+                    return item.id
+                })
+                const forum = res.data.filter(item => item.cinema_id === 315)
+                const forumHalls = forum.map( item => {
+                    return item.id
+                })
+                const kopernyk = res.data.filter(item => item.cinema_id === 103)
+                const kopernykHalls = kopernyk.map( item => {
+                    return item.id
+                })
+                const kinopalats = res.data.filter(item => item.cinema_id === 102)
+                const kinopalatsHalls = kinopalats.map( item => {
+                    return item.id
+                })
+                this.setState({
+                    multiplex: multiplexHalls,
+                    planetakino : planetaKino,
+                    dovzhenka: dovzhenkaHall,
+                    forum: forumHalls,
+                    kopernyk: kopernykHalls,
+                    kinopalats: kinopalatsHalls
+                })
             })
-          
         }
     filterSessions() {
         console.log('111', this.state.currentSession)
@@ -70,19 +92,46 @@ class DataTableFilm extends Component {
     }
     getCinemaName(id) {
         const multiplex = this.state.multiplex;
-        if(id === multiplex[0] || id === multiplex[1] || id === multiplex[2] || id === multiplex[3] || id === multiplex[4] || id === multiplex[5]) {
-            return 'Multiplex'
+            for (const value of multiplex) {
+                if(value === id) {
+                    return 'Multiplex'
+                }
+            }
+        const planetakino = this.state.planetakino;
+        for (const value of planetakino) {
+            if(value === id) {
+                return 'Planeta kino'
+            }
         }
-        // const films = this.state.filmsData;
-        // const exactFilm = films.filter( item => item.id.toString() === id.toString() )
-        // return exactFilm[0].title;
+        const dovzhenka = this.state.dovzhenka;
+        for (const value of dovzhenka) {
+            if(value === id) {
+                return 'Kinopalace Dovzhenka'
+            }
+        }
+        const forum = this.state.forum;
+        for (const value of forum) {
+            if(value === id) {
+                return 'Planeta kino (FORUM)'
+            }
+        }
+        const kopernyk = this.state.kopernyk;
+        for (const value of kopernyk) {
+            if(value === id) {
+                return 'Kinopalace Kopernyk'
+            }
+        }
+        const kinopalats = this.state.kinopalats;
+        for (const value of kinopalats) {
+            if(value === id) {
+                return 'Kinopalace'
+            }
+        }
     }
     renderTable() {
-        // this.filterSessions();
         let session = this.state.filmSessions;
         let layout = session.map(item => {
             let prices = item.times.map( item => {
-                //return item.time
                 if(item.prices === null) {
                     return '70'
                 } else {
@@ -133,7 +182,7 @@ class DataTableFilm extends Component {
         
         return (
             <div>
-                <table className="container">
+                <table className="container-fluid">
                     <thead>
                         <tr>
                         
@@ -141,6 +190,7 @@ class DataTableFilm extends Component {
                             <th><h1></h1></th>
                             <th><h1>Date</h1></th>
                             <th><h1>Time</h1></th>
+                            <th></th>
                             
                             <th><h1></h1></th>
                             <th><h1></h1></th>
