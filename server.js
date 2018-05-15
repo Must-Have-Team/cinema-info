@@ -3,12 +3,13 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
-var Comment = require('./model/comments');
+var axios = require('axios');
+
+var secrets = require('./secrets');
+
 var Cinema = require('./model/cinemas');
 var Session = require('./model/sessions');
 var Films = require('./model/films');
-var secrets = require('./secrets');
-var axios = require('axios');
 var Films = require('./model/films');
 var Img = require('./model/img')
 var CinemaSession = require('./model/cinemaSessions')
@@ -31,258 +32,239 @@ app.use(bodyParser.json());
 app.use('/', express.static(__dirname + '/build'));
 
 app.use(function(req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Credentials', 'true');
-    res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT,DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT,DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
 
-    res.setHeader('Cache-Control', 'no-cache');
-    next();
+  res.setHeader('Cache-Control', 'no-cache');
+  next();
 });
 
-router.route('/comments')
-    .get(function(req, res) {
-        Comment.find(function(err, comments) {
-            if (err)
-                res.send(err);
-            res.json(comments)
-        });
-    })
-    .post(function(req, res) {
-        var comment = new Comment();
-        (req.body.author) ? comment.author = req.body.author : null;
-        (req.body.text) ? comment.text = req.body.text : null;
-
-        comment.save(function(err) {
-            if (err)
-                res.send(err);
-            res.json({ message: 'Comment successfully added!' });
-        });
-    });
-
-router.route('/comments/:comment_id')
-    .put(function(req, res) {
-        Comment.findById(req.params.comment_id, function(err, comment) {
-            if (err)
-                res.send(err);
-            (req.body.author) ? comment.author = req.body.author : null;
-            (req.body.text) ? comment.text = req.body.text : null;
-            comment.save(function(err) {
-                if (err)
-                    res.send(err);
-                res.json({ message: 'Comment has been updated' });
-            });
-        });
-    })
-    .delete(function(req, res) {
-        Comment.remove({ _id: req.params.comment_id }, function(err, comment) {
-            if (err)
-                res.send(err);
-            res.json({ message: 'Comment has been deleted' });
-        })
-    });
-
 router.route('/fetch-new-cinemas')
-    .get(function(req, res) {
-        axios.get(`http://kino-teatr.ua:8081/services/api/city/9/shows?apiKey=${process.env.API_KEY}&size=10&date=2018-05-06&detalization=FULL`)
-            .then(function(data) {
-                console.log(data.data.cinemas);
-                var cinemas = data.data.cinemas.map(function (item) {
-                    return {
-                        id: item.id,
-                        city_id: item.city_id,
-                        name: item.name,
-                        address: item.address
-                    };
-                });
-
-                Cinema.insertMany(cinemas, function (err, data) {
-                    if (err) {res.status(402).end()};
-                    res.send('success');
-                });
-            });
-    });
-  
-    router.route('/fetch-new-films')
-    .get(function(req, res) {
-      axios.get('http://kino-teatr.ua:8081/services/api/city/9/shows?apiKey=pol1kh111&size=2000&detalization=FULL')
-      .then(function(data) {
-    
-        var films = data.data.films.map(function (item) {
-        
-          return {
-           "id": item.id,
-           "title": item.title,
-           "title_orig": item.title_orig,
-           "premiere_ukraine": item.premiere_ukraine,
-           "premiere_world": item.premiere_world,
-           "duration": item.duration,
-           "year": item.year ,
-           "age_limit": item.age_limit ,
-           "rating": item.rating ,
-           "votes": item.votes ,
-           "tmdb_rating": item.tmdb_rating ,
-           "tmdb_votes": item.tmdb_votes ,
-           "imdb_id": item.imdb_id,
-           "total_shows": item.total_shows ,
-           "url": item.url,
-           "studio_ids": item.studio_ids.map(item => item),
-           "country_ids": item.country_ids.map(item => item),
-           "genre_ids": item.genre_ids.map(item => item),
-         };
-       });
-    
-        Films.insertMany(films, function (err, data) {
-          if (err) {res.status(402).end()};
-          res.send('success');
-        });
-      });
-    });
-    router.route('/films')
-    .get(function(req, res) {
-        Films.find({}, function(err, item) {
-            if (err) { res.status(402).send(err); }
-            res.json(item)
-        });
+.get(function(req, res) {
+  axios.get(`http://kino-teatr.ua:8081/services/api/city/9/shows?apiKey=${process.env.API_KEY}&size=10&detalization=FULL`)
+  .then(function(data) {
+    console.log(data.data.cinemas);
+    var cinemas = data.data.cinemas.map(function (item) {
+      return {
+        id: item.id,
+        city_id: item.city_id,
+        name: item.name,
+        address: item.address
+      };
     });
 
-    router.route('/fetch-new-img')
-    .get(function(req, res) {
-      axios.get('http://localhost:3001/api/films')
-      .then(function(data) {
+    Cinema.insertMany(cinemas, function (err, data) {
+      if (err) {res.status(402).end()};
+      res.send('success');
+    });
+  });
+});
+
+router.route('/fetch-new-films')
+.get(function(req, res) {
+  Films.remove({}, function (err) {
+    if (err) return handleError(err);
+  });
+  axios.get(`http://kino-teatr.ua:8081/services/api/city/9/shows?apiKey=${process.env.API_KEY}&size=2000&detalization=FULL`)
+  .then(function(data) {
+    data.data.films.map(function (item) {
+      axios.get(`http://kino-teatr.ua:8081/services/api/film/${item.id}?apiKey=${process.env.API_KEY}`)
+      .then(function(data){
+        var result = {
+          "id": data.data.id,
+          "title": data.data.title,
+          "title_orig": data.data.title_orig,
+          "premiere_ukraine": data.data.premiere_ukraine,
+          "premiere_world": data.data.premiere_world,
+          "duration": data.data.duration,
+          "year": data.data.year ,
+          "age_limit": data.data.age_limit ,
+          "rating": data.data.rating ,
+          "votes": data.data.votes ,
+          "tmdb_rating": data.data.tmdb_rating ,
+          "tmdb_votes": data.data.tmdb_votes ,
+          "imdb_id": data.data.imdb_id,
+          "total_shows": data.data.total_shows ,
+          "url": data.data.url,
+          "description" : data.data.description,
+          "studios": data.data.studios.map(item => item),
+          "countries": data.data.countries.map(item => item),
+          "genres": data.data.genres.map(item => item),
+        };
+        Films.insertMany(result);
+      })
+    });
+  });
+})
+
+router.route('/fetch-new-img')
+.get(function(req, res) {
+  Img.remove({}, function (err) {
+    if (err) return handleError(err);
+  });
+  axios.get('https://popcorn-studio-17.herokuapp.com/api/films')
+  .then(function(data) {
     data.data.map(item => {
-        axios.get(`http://kino-teatr.ua:8081/services/api/film/${item.id}/poster?apiKey=pol1kh111&width=600&height=800&ratio=1`, { responseType: 'arraybuffer' })
-        .then(function(data) {
-            let image = new Buffer(data.data, 'binary').toString('base64')
-              let dataUrl = `data:${data.headers['content-type'].toLowerCase()};base64,${image}`;
+      axios.get(`http://kino-teatr.ua:8081/services/api/film/${item.id}/poster?apiKey=${process.env.API_KEY}&width=600&height=800&ratio=1`, { responseType: 'arraybuffer' })
+      .then(function(data) {
+        let image = new Buffer(data.data, 'binary').toString('base64')
+        let dataUrl = `data:${data.headers['content-type'].toLowerCase()};base64,${image}`;
 
-            let base64 = {
-                "id": item.id,
-                "dataUrl": dataUrl
-            };
-            Img.insertMany(base64);
-        })
+        let base64 = {
+          "id": item.id,
+          "dataUrl": dataUrl
+        };
+        Img.insertMany(base64);
+      })
     })  
-      });
-    });
-    router.route('/fetch-cinemas-sessions')
-    .get(function(req, res) {
-      axios.get('http://localhost:3001/api/cinemas')
-      .then(function(data) {
+  });
+});
+
+router.route('/fetch-cinemas-sessions')
+.get(function(req, res) {
+  CinemaSession.remove({}, function (err) {
+    if (err) return handleError(err);
+  });
+  axios.get('https://popcorn-studio-17.herokuapp.com/api/cinemas')
+  .then(function(data) {
     data.data.map(item => {
-        axios.get(`http://kino-teatr.ua:8081/services/api/cinema/${item.id}/shows?apiKey=pol1kh111&size=2000&detalization=FULL`)
-        .then(function(data) {
-            console.log(data.data.content)
-            var sessions = data.data.content.map(function(item) {
-                return {
-                    "id": item.id,
-                    "begin": item.begin,
-                    "end": item.end,
-                    "film_id": item.film_id,
-                    "hall_id": item.hall_id,
-                    "times": item.times.map(item => {
-                        return {
-                          "id" : item.id ,
-                          "time": item.time ,
-                          "prices": item.prices ,
-                          "purchase_allowed": item.purchase_allowed 
-                        }
-                      })
-                }
+      axios.get(`http://kino-teatr.ua:8081/services/api/cinema/${item.id}/shows?apiKey=${process.env.API_KEY}&size=2000&detalization=FULL`)
+      .then(function(data) {
+        console.log(data.data.content)
+        var sessions = data.data.content.map(function(item) {
+          return {
+            "id": item.id,
+            "begin": item.begin,
+            "end": item.end,
+            "film_id": item.film_id,
+            "hall_id": item.hall_id,
+            "times": item.times.map(item => {
+              return {
+                "id" : item.id ,
+                "time": item.time ,
+                "prices": item.prices ,
+                "purchase_allowed": item.purchase_allowed 
+              }
             })
-            CinemaSession.insertMany(sessions);
+          }
         })
+        CinemaSession.insertMany(sessions);
+      })
     })  
-      });
-    });
-    router.route('/cinema-sessions')
-    .get(function(req, res) {
-        CinemaSession.find({}, function(err, el) {
-            if (err) { res.status(402).send(err); }
-            res.json(el)
-        });
-    });
+  });
+});
 
-    router.route('/images')
-    .get(function(req, res) {
-        Img.find({}, function(err, el) {
-            if (err) { res.status(402).send(err); }
-            res.json(el)
-        });
-    });
-
-    router.route('/fetch-new-session')
-    .get(function(req, res) {
-      axios.get('http://kino-teatr.ua:8081/services/api/city/9/shows?apiKey=pol1kh111&size=1000&detalization=FULL')
-      .then(function(data) {
-        var session = data.data.content.map(function (item) {
-          return {
-           "id": item.id ,
-           "begin": item.begin ,
-           "end": item.end ,
-           "film_id": item.film_id ,
-           "hall_id": item.hall_id ,
-           "times": item.times.map(item => {
-            return {
-              "id" : item.id ,
-              "time": item.time ,
-              "prices": item.prices ,
-              "purchase_allowed": item.purchase_allowed 
-            }
-          })
-         };
-       });
+router.route('/fetch-new-session')
+.get(function(req, res) {
+  Session.remove({}, function (err) {
+    if (err) return handleError(err);
+  });
+  axios.get(`http://kino-teatr.ua:8081/services/api/city/9/shows?apiKey=${process.env.API_KEY}&size=1000&detalization=FULL`)
+  .then(function(data) {
+    var session = data.data.content.map(function (item) {
+      return {
+       "id": item.id ,
+       "begin": item.begin ,
+       "end": item.end ,
+       "film_id": item.film_id ,
+       "hall_id": item.hall_id ,
+       "times": item.times.map(item => {
+        return {
+          "id" : item.id ,
+          "time": item.time ,
+          "prices": item.prices ,
+          "purchase_allowed": item.purchase_allowed 
+        }
+      })
+     };
+   });
     
-        Session.insertMany(session, function (err, data) {
-          if (err) {res.status(402).end()};
-          res.send('success');
-        });
-      });
+    Session.insertMany(session, function (err, data) {
+      if (err) {res.status(402).end()};
+      res.send('success');
     });
+  });
+});
+router.route('/fetch-new-halls')
+.get(function(req, res) {
+  Halls.remove({}, function (err) {
+    if (err) return handleError(err);
+  });
+  Halls.remove({}, function (err) {
+    if (err) return handleError(err);
+  });
+  axios.get(`http://kino-teatr.ua:8081/services/api/city/9/shows?apiKey=${process.env.API_KEY}&size=2000&detalization=FULL`)
+  .then(function(data) {
+    var halls = data.data.halls.map(function (item) {
+      return {
+       "id": item.id ,
+       "name": item.name ,
+       "cinema_id": item.cinema_id,
+       "3d" : item['3d']
+     };
+   });
+
+    Halls.insertMany(halls, function (err, data) {
+      if (err) {res.status(402).end()};
+      res.send('success');
+    });
+  });
+});
 
 router.route('/cinemas')
-    .get(function(req, res) {
-        Cinema.find({}, function(err, cinemas) {
-            if (err) { res.status(402).send(err); }
-            res.json(cinemas)
-        });
-    });
-
-    router.route('/sessions')
-    .get(function(req, res) {
-        Session.find({}, function(err, sessions) {
-            if (err) { res.status(402).send(err); }
-            res.json(sessions)  
-        });
-    });
-
-router.route('/cinemas')
-    .get(function (req, res) {
-        Cinema.find({}, function (err, cinemas) {
-            if (err) { res.status(402).send(err); }
-            res.json(cinemas)
-        });
-    });
+.get(function(req, res) {
+  Cinema.find({}, function(err, cinemas) {
+    if (err) { res.status(402).send(err); }
+    res.json(cinemas)
+  });
+});
 
 router.route('/films')
-    .get(function (req, res) {
-        Films.find({}, function (err, cinemas) {
-            if (err) { res.status(402).send(err); }
-            res.json(cinemas)
-        });
-    });
+.get(function(req, res) {
+  Films.find({}, function(err, item) {
+    if (err) { res.status(402).send(err); }
+    res.json(item)
+  });
+});
+
+router.route('/sessions')
+.get(function(req, res) {
+  Session.find({}, function(err, sessions) {
+    if (err) { res.status(402).send(err); }
+    res.json(sessions)  
+  });
+});
+
+router.route('/cinema-sessions')
+.get(function(req, res) {
+  CinemaSession.find({}, function(err, el) {
+    if (err) { res.status(402).send(err); }
+    res.json(el)
+  });
+});
+
+router.route('/images')
+.get(function(req, res) {
+  Img.find({}, function(err, el) {
+    if (err) { res.status(402).send(err); }
+    res.json(el)
+  });
+});
+
 router.route('/halls')
-    .get(function(req, res) {
-      Halls.find({}, function(err, cinemas) {
-        if (err) { res.status(402).send(err); }
-        res.json(cinemas)
-      });
-    });
+.get(function(req, res) {
+  Halls.find({}, function(err, cinemas) {
+    if (err) { res.status(402).send(err); }
+    res.json(cinemas)
+  });
+});
 
 app.use('/api', router);
 
 app.listen(port, function() {
-    console.log(`api running on port ${port}`);
+  console.log(`api running on port ${port}`);
 });
 
 
