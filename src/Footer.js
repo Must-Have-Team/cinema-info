@@ -5,41 +5,34 @@ import {
   } from "react-router-dom"; 
 
 class Footer extends Component {
+    
   render() {
     return (
         <footer className='myFooter'>
         <div className="container">
             <div className="row">
-                <div className="col-sm-3">
+                <div className="col-sm-4">
                     <h5>Get started</h5>
                     <ul>
                         <li><NavLink exact to="/">Home</NavLink></li>
                         <li><NavLink to="/login">Login</NavLink></li>
                     </ul>
                 </div>
-                <div className="col-sm-3">
+                <div className="col-sm-4">
                     <h5>About us</h5>
                     <ul>
-                        <li><a href="#">Company Information</a></li>
-                        <li><a href="#">Contact us</a></li>
+                        <li><a>Company Information</a></li>
+                        <li><a>Contact us</a></li>
                     </ul>
                 </div>
-                <div className="col-sm-3">
+                <div className="col-sm-4">
                     <h5>Support</h5>
                     <ul>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Help desk</a></li>
-                    </ul>
-                </div>
-                <div className="col-sm-3">
-                    <h5>Legal</h5>
-                    <ul>
-                        <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a>FAQ</a></li>
+                        <li><a>Help desk</a></li>
                     </ul>
                 </div>
             </div>
-            
             <Map isMarkerShown />
         </div>
         <div className="social-networks">
