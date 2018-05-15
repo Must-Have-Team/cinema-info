@@ -20,7 +20,7 @@ class ResponsiveTable extends Component {
         this.getName = this.getName.bind(this);
     }
     
-    componentDidMount(){
+    componentWillMount(){
         axios.get(`${BASE_URL}/api/films`)
           .then(res => {
             this.setState({ filmsData: res.data });
@@ -32,7 +32,7 @@ class ResponsiveTable extends Component {
         //    console.log(this.props.cinemaId);
            const cinema = this.props.cinemaId;
            const currentHalls = res.data.filter( item => item.cinema_id.toString() === cinema);
-           const currentHall = currentHalls[1].id
+           const currentHall = currentHalls[0].id
         //    console.log(currentHall);
            this.setState({
             currentHall : currentHall
@@ -80,9 +80,9 @@ class ResponsiveTable extends Component {
             let prices = item.times.map( item => {
                 //return item.time
                 if(item.prices === null) {
-                    return '70'
+                    return 'Price is not allowed'
                 } else {
-                    return item.prices
+                    return `Ціна: ${item.prices}`
                 }   
             })
             console.log('PRICES', prices)
