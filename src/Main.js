@@ -12,7 +12,6 @@ import Navbar from './Navbar'
 import Footer from './Footer'
 import SingleMovie from './Singlemovie/SingleMovie';
 import SingleCinema from './CinemaList/SingleCinema';
-import CommentBox from './CommentBox/CommentBox';
 
 
 class Main extends Component {
@@ -29,7 +28,6 @@ class Main extends Component {
                 <Route path="/contact" component={Contact}/>
                 <Route path="/login" component={Login}/>
                 <Route path="/film/:id" component={SingleMovie}/>
-                <Route path="/comment" component={CommentBox}/>
             </div>
 
             <Footer />

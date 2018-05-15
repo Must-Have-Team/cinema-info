@@ -4,7 +4,7 @@ import Stars from '../starRating/StarRating';
 import './style.css';
 import GetPoster from '../Poster/GetPoster';
 
-const BASE_URL = 'http://localhost:3001';
+const BASE_URL = 'https://popcorn-studio-17.herokuapp.com';
 
 class SingleMovie extends Component {
   constructor(props) {
