@@ -3,8 +3,9 @@ import axios from 'axios';
 import Stars from '../starRating/StarRating';
 import './style.css';
 import GetPoster from '../Poster/GetPoster';
+import DataTableFilm from '../DataTable/DataTableFilm'
 
-const BASE_URL = 'http://localhost:3001';
+const BASE_URL = 'https://popcorn-studio-17.herokuapp.com';
 
 class SingleMovie extends Component {
   constructor(props) {
@@ -31,17 +32,20 @@ class SingleMovie extends Component {
         <div className="film">
           <div className="container exact">
             <div className="row">
-              <div className="col">
+              <div className="col-lg-4">
                 <GetPoster filmId={stateData.id}/>
-                <h1>{stateData.title}({stateData.title_orig})</h1>
+                <h1 className="title-stl">{stateData.title}({stateData.title_orig})</h1>
                 <p>{stateData.raiting}</p>
-                <p>Rate this movie</p>
+                <div className="rate-txt">
+                <p >Rate this movie</p>
                 <Stars />
+                </div>
               </div>
-              <div className="col">
-                <div dangerouslySetInnerHTML={{ __html: stateData.description }}></div>
+              <div className="col-lg-8">
+                <div className="descr-box" dangerouslySetInnerHTML={{ __html: stateData.description }}></div>
               </div>
             </div>
+               <DataTableFilm filmId={stateData.id} />
           </div>
         </div>
     }

@@ -15,20 +15,18 @@ class GetPostersId extends Component {
   }
   componentDidMount() {
     const toDataURL = url => axios.get(url).then(data => {
+
       const base64 = data.data[0].dataUrl;
+
       this.setState({
         base64: base64
       })
     })
-
     toDataURL(`${BASE_URL}/api/images/${this.props.filmId}`);
   }
 
   render() {
     let img = this.state.base64;
-    // if(!this.state.id) {
-    //     return null
-    // }
     return ( <
       img key = {
         this.props.filmId

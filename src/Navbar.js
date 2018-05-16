@@ -28,9 +28,6 @@ class Navbar extends Component {
             <li className="nav-item">
             <NavLink to="/login">Login</NavLink>
             </li>
-            <li className='nav-item'>
-            <NavLink to="/comment">TestPage</NavLink>
-            </li>
           </ul>
 
         </div>
