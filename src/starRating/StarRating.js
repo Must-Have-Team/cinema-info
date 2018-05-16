@@ -7,7 +7,7 @@ class Stars extends React.Component {
     super(props);
 
     this.state = {
-      rating: 1
+      rating: this.props.star
     };
   }
 
