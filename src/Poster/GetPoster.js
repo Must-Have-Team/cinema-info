@@ -3,7 +3,7 @@ import React, {
 } from 'react';
 import axios from 'axios';
 
-const BASEURL = `http://localhost:3001/`;
+const BASEURL = `https://popcorn-studio-17.herokuapp.com`;
 
 class GetPostersId extends Component {
   constructor(props) {
@@ -14,18 +14,22 @@ class GetPostersId extends Component {
     }
   }
   componentDidMount() {
-
     const toDataURL = url => axios.get(url).then(data => {
-      //  console.log(this.props.filmId);
-      const element = data.data.filter(item => item.id === this.props.filmId);
-      //console.log(element);
-      const base64 = element[0].dataUrl;
-      //console.log(base64)
+      const base64 = data.data[0].dataUrl;
       this.setState({
         base64: base64
       })
     })
-    toDataURL(`${BASEURL}api/images`);
+    // const toDataURL = url => axios.get(url).then(data => {
+    //   //  console.log(this.props.filmId);
+    //   const element = data.data.filter(item => item.id === this.props.filmId);
+    //   //console.log(element);
+    //   const base64 = element[0].dataUrl;
+    //   //console.log(base64)
+    
+    // })
+    // toDataURL(`${BASEURL}api/images`);
+    toDataURL(`${BASEURL}/api/images/${this.props.filmId}`);
   }
 
   render() {

@@ -196,7 +196,7 @@ router.route('/fetch-new-cinemas')
       });
     });
     router.route('/cinema-sessions')
-    .get(function(req, res) {
+    .get(function(req, res) {8
         CinemaSession.find({}, function(err, el) {
             if (err) { res.status(402).send(err); }
             res.json(el)
@@ -210,7 +210,15 @@ router.route('/fetch-new-cinemas')
             res.json(el)
         });
     });
+    router.route('/images/:id')
+    .get(function(req, res) {
+        const filmId = req.params.id;
 
+        Img.find({id: filmId}, function(err, el) {
+            if (err) { res.status(402).send(err); }
+            res.json(el)
+        });
+    });
     router.route('/fetch-new-session')
     .get(function(req, res) {
       axios.get('http://kino-teatr.ua:8081/services/api/city/9/shows?apiKey=pol1kh111&size=1000&detalization=FULL')
