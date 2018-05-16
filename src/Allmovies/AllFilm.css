@@ -18,7 +18,7 @@
 .parallax::after {
   content: '';
   transform: translateX(-1px) translateY(4px) scaleY(1.1);
-  background-image: url("../img/Webp.net-compress-image-min.jpg");
+  background-image: url("../img/photoeditorsdk-export-min.png");
   background-color: rgb(20, 13, 13);
   z-index: -1;
   opacity: 0.9;

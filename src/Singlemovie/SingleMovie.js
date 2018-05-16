@@ -32,14 +32,11 @@ class SingleMovie extends Component {
         <div className="film">
           <div className="container exact">
             <div className="row">
-              <div className="col-lg-4">
-                <GetPoster filmId={stateData.id}/>
-                <h1 className="title-stl">{stateData.title}({stateData.title_orig})</h1>
-                <p>{stateData.raiting}</p>
-                <div className="rate-txt">
-                <p >Rate this movie</p>
-                <Stars />
-                </div>
+              <div className="col">
+                <img className="img" src={stateData.url} alt="image" />
+                <h1>{stateData.title}({stateData.title_orig})</h1>
+                <p>Rate this movie</p>
+              <Stars star={stateData.rating/2}/>
               </div>
               <div className="col-lg-8">
                 <div className="descr-box" dangerouslySetInnerHTML={{ __html: stateData.description }}></div>

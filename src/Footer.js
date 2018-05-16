@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import Map from './googleMap/GoogleMap';
 import {
     NavLink
-  } from "react-router-dom"; 
+  } from "react-router-dom";
 
 class Footer extends Component {
-    
+
   render() {
     return (
         <footer className='myFooter'>
@@ -21,8 +21,8 @@ class Footer extends Component {
                 <div className="col-sm-4">
                     <h5>About us</h5>
                     <ul>
-                        <li><a>Company Information</a></li>
-                        <li><a>Contact us</a></li>
+                        <li><a href="#">Company Information</a></li>
+                        <li><a href="/contact">Contact us</a></li>
                     </ul>
                 </div>
                 <div className="col-sm-4">
@@ -36,9 +36,9 @@ class Footer extends Component {
             <Map isMarkerShown />
         </div>
         <div className="social-networks">
-            <a href="#" className="twitter"><i className="fa fa-twitter"></i></a>
-            <a href="#" className="facebook"><i className="fa fa-facebook"></i></a>
-            <a href="#" className="google"><i className="fa fa-google-plus"></i></a>
+                <a href="https://twitter.com/dan_abramov" className="twitter"><i className="fa fa-twitter"></i></a>
+                <a href="https://www.facebook.com/EPAM.Lviv/" className="facebook"><i className="fa fa-facebook"></i></a>
+                <a href="https://www.google.com.ua/" className="google"><i className="fa fa-google-plus"></i></a>
         </div>
         <div className="footer-copyright">
             <p>© 2018 POPCORN </p>
@@ -47,5 +47,5 @@ class Footer extends Component {
     );
   }
 }
- 
+
 export default Footer;
