@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import "./Login.css";
+import Footer from '../Footer'
 
 class Login extends Component {
     render () {
       return (
+        <div>
       <div className="login-wrap">
         <div className="login-html">
           <button id="close">
@@ -60,6 +62,8 @@ class Login extends Component {
             </div>
           </div>
         </div>
+      </div>
+      <Footer />
       </div>
      );
   }

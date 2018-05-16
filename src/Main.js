@@ -20,7 +20,6 @@ class Main extends Component {
         <Router>
           <div>
           <Navbar />
-
             <div className="content">
                 <Route exact path="/" component={Home}/>
                 <Route path="/cinemas" component={Cinema}/>
@@ -29,8 +28,7 @@ class Main extends Component {
                 <Route path="/login" component={Login}/>
                 <Route path="/film/:id" component={SingleMovie}/>
             </div>
-
-            <Footer />
+            {/* <Footer /> */}
           </div>
         </Router>
       );

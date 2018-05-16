@@ -4,6 +4,7 @@ import './Cinema.css';
 import {
   Link
 } from 'react-router-dom';
+import Footer from '../Footer'
 
 const BASE_URL = 'https://popcorn-studio-17.herokuapp.com';
 
@@ -41,6 +42,7 @@ class Cinema extends Component {
   }
   render() {
     return (
+      <div>
       <div className="cinema-list" >
         <h2 className="text-list row justify-content-center">Список кінотеатрів у місті
         <select className="cinema-select">
@@ -53,6 +55,8 @@ class Cinema extends Component {
          <div className="cinema-box-holder">
           {this.state.data.map(this.renderCinema)}
         </div>
+      </div>
+      <Footer />
       </div>
     )
   }

@@ -5,7 +5,9 @@ import {
   } from "react-router-dom";
 
 class Footer extends Component {
-
+    constructor(props) {
+        super(props)
+    }
   render() {
     return (
         <footer className='myFooter'>
@@ -33,7 +35,7 @@ class Footer extends Component {
                     </ul>
                 </div>
             </div>
-            <Map isMarkerShown />
+            <Map isMarkerShown  id={this.props.id}/>
         </div>
         <div className="social-networks">
                 <a href="https://twitter.com/dan_abramov" className="twitter"><i className="fa fa-twitter"></i></a>
