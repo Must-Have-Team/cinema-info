@@ -45,8 +45,6 @@ class ResponsiveTable extends Component {
                 this.setState({ currentSession: currentSession });
             }) 
           )
-        
-
         }
     filterSessions() {
         console.log('111', this.state.currentSession)
