@@ -196,7 +196,7 @@ router.route('/fetch-new-cinemas')
       });
     });
     router.route('/cinema-sessions')
-    .get(function(req, res) {8
+    .get(function(req, res) {
         CinemaSession.find({}, function(err, el) {
             if (err) { res.status(402).send(err); }
             res.json(el)
