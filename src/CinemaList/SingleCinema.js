@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import ButtonBack from './ButtonBack';
 import './SingleCinema.css';
-import ResponsiveTable from '../DataTable/Table';
 
-const BASE_URL = 'http://localhost:3001';
+const BASE_URL = 'https://popcorn-studio-17.herokuapp.com';
 
 class SingleCinema extends Component {
   constructor(props) {
@@ -88,7 +87,6 @@ class SingleCinema extends Component {
          onClick={this.handleClickTechnology}>Технології</button>
       </div>
       {technology}
-      <ResponsiveTable cinemaId={this.props.match.params.id}/> 
        <ButtonBack />
       </div>
     )
