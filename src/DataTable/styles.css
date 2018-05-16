@@ -38,6 +38,7 @@ h2 a {
 .yellow { color: #FFF842; }
 
 .container th h1 {
+
     font-weight: bold;
     font-size: 1em;
   text-align: left;
@@ -74,11 +75,12 @@ h2 a {
 
 /* Background-color of the even rows */
 .container tr:nth-child(even) {
-    background-color: #2C3446;
+	  background-color: #2C3446;
 }
 
 .container th {
-    background-color: #1F2739;
+	  background-color: #1F2739;
+
 }
 
 .container td:first-child { color: #FB667A; }
@@ -86,8 +88,8 @@ h2 a {
 .container tr:hover {
    background-color: #464A52;
 -webkit-box-shadow: 0 6px 6px -6px #0E1119;
-     -moz-box-shadow: 0 6px 6px -6px #0E1119;
-          box-shadow: 0 6px 6px -6px #0E1119;
+	   -moz-box-shadow: 0 6px 6px -6px #0E1119;
+	        box-shadow: 0 6px 6px -6px #0E1119;
 }
 
 .container td:hover {
@@ -99,9 +101,19 @@ h2 a {
   transform: translate3d(6px, -6px, 0);
   
   transition-delay: 0s;
-    transition-duration: 0.4s;
-    transition-property: all;
+	  transition-duration: 0.4s;
+	  transition-property: all;
   transition-timing-function: line;
+}
+.price {
+  display: none;
+}
+td:hover .price {
+  display: block;
+}
+.poster-cell {
+  width: 150px;
+  height: 200px;
 }
 
 @media (max-width: 800px) {
