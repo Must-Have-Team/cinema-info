@@ -14,7 +14,58 @@ const MyMapComponent = compose(
     withScriptjs,
     withGoogleMap
   )((props) => {
+    console.log(props.id);
     return (
+    <div>
+    {props.id ? 
+    <GoogleMap
+      defaultZoom={10}
+      defaultCenter={{ lat: 49.839683, lng: 24.029717 }}
+    >
+      {props.isMarkerShown && props.id == 337 && <MarkerWithLabel
+                                position={{ lat: 49.807411, lng: 23.978631 }}
+                                labelAnchor={{x:0,y:0}}
+
+                              >
+                              <span className='map-desc'>Victoria Gardens</span>
+                                </MarkerWithLabel>}
+      {props.isMarkerShown  && props.id == 98 && <MarkerWithLabel
+                                position={{ lat: 49.795381, lng: 24.057806 }}
+                                labelAnchor={{x:0,y:0}}
+
+                              >
+                              <span className='map-desc'>Kinopalats Dovzhenka</span>
+                                </MarkerWithLabel>}
+      {props.isMarkerShown  && props.id == 103 && <MarkerWithLabel
+                                position={{ lat: 49.838633, lng: 24.027357 }}
+                                labelAnchor={{x:0,y:0}}
+
+                              >
+                              <span className='map-desc'>Kinopalats Kopernyk</span>
+                                </MarkerWithLabel>}
+      {props.isMarkerShown  && props.id == 207 && <MarkerWithLabel
+                                position={{ lat: 49.777218, lng: 23.961439 }}
+                                labelAnchor={{x:0,y:0}}
+
+                              >
+                              <span className='map-desc'>Planeta Kino IMAX</span>
+                                </MarkerWithLabel>}
+      {props.isMarkerShown  && props.id == 315 && <MarkerWithLabel
+                                position={{ lat: 49.8503999, lng: 24.0198458 }}
+                                labelAnchor={{x:0,y:0}}
+
+                              >
+                              <span className='map-desc'>Planeta Kino FORUM 4DX</span>
+                                </MarkerWithLabel>}
+      {props.isMarkerShown  && props.id == 102 && <MarkerWithLabel
+                                position={{ lat: 49.844528, lng: 24.028258 }}
+                                labelAnchor={{x:0,y:0}}
+
+                              >
+                              <span className='map-desc'>Kinopalats</span>
+                                </MarkerWithLabel>}
+    </GoogleMap>
+    :
     <GoogleMap
       defaultZoom={11}
       defaultCenter={{ lat: 49.839683, lng: 24.029717 }}
@@ -62,6 +113,8 @@ const MyMapComponent = compose(
                               <span></span>
                                 </MarkerWithLabel>}
     </GoogleMap>
+    }
+    </div>
     )
   }
   )
