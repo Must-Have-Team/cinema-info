@@ -28,25 +28,18 @@ class ResponsiveTable extends Component {
      
         axios.get(`${BASE_URL}/api/halls`)
           .then(res => {
-        //    console.log(res.data)
-        //    console.log(this.props.cinemaId);
            const cinema = this.props.cinemaId;
            const currentHalls = res.data.filter( item => item.cinema_id.toString() === cinema);
            const currentHall = currentHalls[0].id
-        //    console.log(currentHall);
            this.setState({
             currentHall : currentHall
            })
           }).then(
             axios.get(`${BASE_URL}/api/cinema-sessions`)
             .then(res => {
-                // console.log(res.data)
                 const hall = this.state.currentHall;
-                // console.log('1122323',hall)
                 const currentSession = res.data.filter( item =>item.hall_id === hall );
-                // console.log(currentSession)
                 this.setState({ currentSession: currentSession });
-                // console.log(this.state.currentSession);
             }) 
           )
         
@@ -60,12 +53,6 @@ class ResponsiveTable extends Component {
             var d = new Date(b.begin);
             return c-d;
             });
-        // console.log(array)
-        // const sorted = this.state.currentSession.sort((a, b) => (new Date(a.begin) - new Date(b.begin)))
-        // console.log(sorted)
-        // this.setState( {
-        //     currentSession: sorted
-        // });
     }
 
     getName(id) {
@@ -85,11 +72,9 @@ class ResponsiveTable extends Component {
                     return `Ціна: ${item.prices}`
                 }   
             })
-            // console.log('PRICES', prices)
             let times = item.times.map( item => {
                 return <p>{item.time}</p>
             })
-            // console.log(times);
             return (
                 <tr key={item.id}>
                     <td className='poster-cell'><GetPoster filmId={item.film_id}/></td>
