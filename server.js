@@ -167,7 +167,15 @@ router.route('/fetch-new-cinemas')
             res.json(el)
         });
     });
+    router.route('/images/:id')
+    .get(function(req, res) {
+        const filmId = req.params.id;
 
+        Img.find({id: filmId}, function(err, el) {
+            if (err) { res.status(402).send(err); }
+            res.json(el)
+        });
+    });
     router.route('/fetch-new-session')
     .get(function(req, res) {
       Session.remove({}, function (err) {
