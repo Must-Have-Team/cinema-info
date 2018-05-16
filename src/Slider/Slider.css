@@ -40,10 +40,10 @@
   margin-left: 10px;
 }
 .slider .labels span:hover{
-  background-color: #E36416;
+  background-color: #792227;
 }
 .slider .labels span.current-slide{
-  background-color: orange;
+  background-color: #792227;
 }
 .slider .btn{
   position: absolute;

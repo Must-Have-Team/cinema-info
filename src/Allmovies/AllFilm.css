@@ -37,11 +37,13 @@
 .actual {
   box-sizing: border-box;
   text-align: center;
-  background-color: rgb(236, 234, 234, 0.8);
+  background-color: #792227;
   width: 100%;
-  color: rgb(5, 5, 5);
-  font-weight: 800;
+  color: #fff;
+  font-weight: 200;
+  padding: 30px;
 }
+
 .film-box {
   margin: 0 10px 20px 10px;
   width: 14%;
@@ -92,27 +94,27 @@
   margin: 1%;
 }
 .btn-film {
-  width: 150px;
-  padding: 6% 0;
-  border:2px solid #e67300;
-  border-radius: 4%;
-  background: #2a2e33;
-  color: white;
+  border-width: 2px;
+  padding: 19px 40px;
   font-size: 18px;
-  font-weight: 600;
+  color: #fff;
+  background: #792227;
+  border-color: #792227;
 }
-.btn-film:hover{
+
+.btn-film:hover {
   cursor: pointer;
-  background: linear-gradient(#2a2e33,#693500);
-  border-color: rgb(199, 199, 199);
+  background: #b9343c;
+  border-color: #b9343c;
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0.12);
 }
-.btn-film:active{
-  background: linear-gradient(#2a2e33,#bd5f02);
-  border-color:#e67300;
+.btn-film:active {
+  background: #b9343c;
+  border-color: #b9343c;
 }
 .btn-film:focus {
-  outline: 0;
-  background: linear-gradient(#2a2e33,#693500);
+  background: #b9343c;
+  border-color: #b9343c;
 }
 @media only screen and (max-width: 600px) {
 .film-box-holder {
