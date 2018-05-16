@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './styles.css';
 import axios from 'axios';
+import {
+    Link
+  } from 'react-router-dom'
 
 const BASE_URL = 'https://popcorn-studio-17.herokuapp.com';
 
@@ -94,37 +97,37 @@ class DataTableFilm extends Component {
         const multiplex = this.state.multiplex;
             for (const value of multiplex) {
                 if(value === id) {
-                    return 'Multiplex'
+                    return <Link to={`/cinema/337`}>Multiplex</Link>
                 }
             }
         const planetakino = this.state.planetakino;
         for (const value of planetakino) {
             if(value === id) {
-                return 'Planeta kino'
+                return <Link to={`/cinema/207`}>Planeta kino</Link>
             }
         }
         const dovzhenka = this.state.dovzhenka;
         for (const value of dovzhenka) {
             if(value === id) {
-                return 'Kinopalace Dovzhenka'
+                return <Link to={`/cinema/98`}>Kinopalace Dovzhenka</Link>
             }
         }
         const forum = this.state.forum;
         for (const value of forum) {
             if(value === id) {
-                return 'Planeta kino (FORUM)'
+                return <Link to={`/cinema/315`}>Planeta kino (FORUM)</Link>
             }
         }
         const kopernyk = this.state.kopernyk;
         for (const value of kopernyk) {
             if(value === id) {
-                return 'Kinopalace Kopernyk'
+                return <Link to={`/cinema/103`}>Kinopalace Kopernyk</Link>
             }
         }
         const kinopalats = this.state.kinopalats;
         for (const value of kinopalats) {
             if(value === id) {
-                return 'Kinopalace'
+                return  <Link to={`/cinema/102`}>Kinopalace</Link>
             }
         }
     }
