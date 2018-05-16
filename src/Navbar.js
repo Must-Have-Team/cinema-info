@@ -21,10 +21,13 @@ class Navbar extends Component {
             <NavLink exact to="/">Home</NavLink>
             </li>
             <li className="nav-item">
-            <NavLink to="/cinemas">Кінотеатри</NavLink>
+            <NavLink to="/cinemas">Cinemas</NavLink>
             </li>
             <li className="nav-item">
             <NavLink to="/contact">Contacts</NavLink>
+            </li>
+            <li className="nav-item">
+            <NavLink to="/about">About</NavLink>
             </li>
             <li className="nav-item">
             <NavLink to="/login">Login</NavLink>

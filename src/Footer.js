@@ -14,24 +14,22 @@ class Footer extends Component {
         <div className="container p-0">
             <div className="row">
                 <div className="col-sm-4">
-                    <h5>Get started</h5>
+                    <h5>Почати</h5>
                     <ul>
-                        <li><NavLink exact to="/">Home</NavLink></li>
-                        <li><NavLink to="/login">Login</NavLink></li>
+                        <li><NavLink exact to="/">Головна</NavLink></li>
+                        <li><NavLink to="/login">Увійти</NavLink></li>
                     </ul>
                 </div>
                 <div className="col-sm-4">
-                    <h5>About us</h5>
+                <h5>Зв'язок</h5>
                     <ul>
-                        <li><a href="#">Company Information</a></li>
-                        <li><a href="/contact">Contact us</a></li>
+                        <li><NavLink to="/contact">Контакти</NavLink></li>
                     </ul>
                 </div>
                 <div className="col-sm-4">
-                    <h5>Support</h5>
+                    <h5>Підтримка</h5>
                     <ul>
-                        <li><a>FAQ</a></li>
-                        <li><a>Help desk</a></li>
+                        <li><NavLink exact to="/about">Наша Команда</NavLink></li>
                     </ul>
                 </div>
             </div>
