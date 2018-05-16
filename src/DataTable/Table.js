@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import './styles.css';
 import axios from 'axios';
 import GetPoster from '../Poster/GetPoster';
+import {
+    Link
+  } from 'react-router-dom'
 
 const BASE_URL = 'https://popcorn-studio-17.herokuapp.com';
 
@@ -77,8 +80,16 @@ class ResponsiveTable extends Component {
             })
             return (
                 <tr key={item.id}>
-                    <td className='poster-cell'><GetPoster filmId={item.film_id}/></td>
-                    <td className='cell'>{this.getName(item.film_id)}</td>
+                    <td className='poster-cell'>
+                        <Link className="title-link" to={`/film/${item.film_id}`}>
+                            <GetPoster filmId={item.film_id}/>
+                        </Link>
+                    </td>
+                    <td className='cell'>
+                        <Link className="title-link" to={`/film/${item.film_id}`}>
+                            {this.getName(item.film_id)}
+                        </Link>
+                    </td>
                     <td className='date-cell'>{item.begin}</td>
                     <td className='cell'>
                        <p>{times[0]}</p>
