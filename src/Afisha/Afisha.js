@@ -265,7 +265,7 @@ class DataTableFilm extends Component {
       return 0
 	  });
 		return (
-			<div>
+			<div className="afisha">
 				<div className="selects">
 					<select onChange={this.handleChange}>
 						<option value=''>Виберіть жанр</option>

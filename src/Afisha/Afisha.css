@@ -1,21 +1,21 @@
-td{
+.afisha td{
 	width: calc(100% / 7);
 	height: auto;
 }
-td img {
+.afisha td img {
 	width: 100%;
 }
-td a{
+.afisha td a{
 	display: block;
 	border: 1px solid black;
 	padding: 5px;
 	text-align: center;
 
 }
-tr:nth-child(even) td:nth-child(odd){
+.afisha tr:nth-child(even) td:nth-child(odd){
 	background: #ccc;
 }
-tr:nth-child(odd) td:nth-child(even){
+.afisha tr:nth-child(odd) td:nth-child(even){
 	background: #ccc;
 }
 
