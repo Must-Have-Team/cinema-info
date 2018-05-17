@@ -199,7 +199,7 @@ class DataTableFilm extends Component {
 
         return (
             <div>
-                <select onChange={this.handleChange}>
+                <select className="styled-select rounded single-cinema" onChange={this.handleChange}>
                     {days.map(item => {
                     return (
                         <option key={item} value={item}>{item}</option>

@@ -180,19 +180,37 @@
   font-size: 14px;
 }
 
-@media (min-width: 992px) and (max-width:1300px) {
-  #navbarTogglerDemo03 {
-    position: relative;
-    right: 25%;
-  }
+.cinema-info p {
+  text-align: left;
 }
 
-
-@media screen and (max-width: 767px) {
+@media (min-width: 400px) and (max-width: 767px) {
   .myFooter {
       text-align: center;
   }
   .myFooter .row {
       margin: 0;
+  }
+
+  .navbar-collapse {
+    margin-left: 0;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .navbar-collapse {
+    margin-left: 0;
+  }
+}
+
+
+@media (min-width: 992px) and (max-width:1450px) {
+  #navbarTogglerDemo03 {
+    position: relative;
+    right: 25%;
+  }
+
+  .nav-item a {
+    width: 100px;
   }
 }
