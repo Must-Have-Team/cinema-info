@@ -38,8 +38,6 @@ class DataTableFilm extends Component {
 		axios.get(`${BASE_URL}/api/sessions`)
 		.then(res => {
 
-			// const exactSession = res.data.filter( item =>  item.film_id.toString() === '47851')
-			// console.log(exactSession)
 			this.setState({
 				sessions : res.data
 			})
@@ -150,9 +148,6 @@ class DataTableFilm extends Component {
 			}
 		}
 	}
-	// renderPosterFilm = (id) =>{
-	// 	console.log(this.state.data.filter(item => item.id === id))
-	// }
 	
 	renderSchedule =(elem) => {
 		return (
@@ -160,7 +155,6 @@ class DataTableFilm extends Component {
 				{elem.map( element => {
 					return (
 						<React.Fragment>
-							{/*<a style={{ display : 'block'}} href="$">{element.begin}</a>*/}
 							<a href="#">
 								{element.times[0].time}
 							</a>
@@ -193,13 +187,10 @@ class DataTableFilm extends Component {
             toDaySession.push(item)
         };
     })
-    console.log(toDaySession)
-    console.log(this.state.sessions)
 
     for(let i = 0; i < filtered.length; i++) {
  				session.push(toDaySession.filter( elem => elem.film_id === filtered[i].id))
     }
-		console.log(session)
 
 		if(session.length === 0){
 			return <tr><td>Loading...</td></tr>
@@ -221,7 +212,6 @@ class DataTableFilm extends Component {
 				sessionsKinopalats.push(item.filter( elem => elem.hall_id === 118 || elem.hall_id === 119 || elem.hall_id === 188 ));
 				sessionsKopernik.push(item.filter( elem => elem.hall_id === 708 || elem.hall_id === 120));
 				sessionsDovzhenko.push(item.filter( elem => elem.hall_id === 141));
-							console.log(item)
 				return (
 					<tr key={index}>
 						<td>
