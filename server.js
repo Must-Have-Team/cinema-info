@@ -9,9 +9,10 @@ var Films = require('./model/films');
 var secrets = require('./secrets');
 var axios = require('axios');
 var Films = require('./model/films');
-var Img = require('./model/img')
-var CinemaSession = require('./model/cinemaSessions')
-var Halls = require('./model/halls')
+var Img = require('./model/img');
+var CinemaSession = require('./model/cinemaSessions');
+var Halls = require('./model/halls');
+var Trailer = require('./model/trailers');
 
 
 
@@ -59,7 +60,7 @@ router.route('/fetch-new-cinemas')
                 });
             });
     });
-  
+
     router.route('/fetch-new-films')
     .get(function(req, res) {
       Films.remove({}, function (err) {
@@ -116,7 +117,7 @@ router.route('/fetch-new-cinemas')
             };
             Img.insertMany(base64);
         })
-    })  
+    })
       });
     });
 
@@ -125,7 +126,7 @@ router.route('/fetch-new-trailer')
         Trailer.remove({}, function (err) {
             if (err) return handleError(err);
         });
-        axios.get('http://popcorn-studio-17.herokuapp.com/api/films')
+        axios.get('https://popcorn-studio-17.herokuapp.com/api/films')
             .then(function (data) {
                 data.data.map(item => {
                     axios.get(`http://kino-teatr.ua:8081/services/api/film/${item.id}/trailers?apiKey=${process.env.API_KEY}&size=1`)
@@ -167,14 +168,14 @@ router.route('/fetch-new-trailer')
                           "id" : item.id ,
                           "time": item.time ,
                           "prices": item.prices ,
-                          "purchase_allowed": item.purchase_allowed 
+                          "purchase_allowed": item.purchase_allowed
                         }
                       })
                 }
             })
             CinemaSession.insertMany(sessions);
         })
-    })  
+    })
       });
     });
     router.route('/cinema-sessions')
@@ -192,7 +193,22 @@ router.route('/fetch-new-trailer')
             res.json(el)
         });
     });
+    router.route('/images/:id')
+    .get(function(req, res) {
+        const filmId = req.params.id;
 
+        Img.find({id: filmId}, function(err, el) {
+            if (err) { res.status(402).send(err); }
+            res.json(el)
+        });
+    });
+router.route('/trailers')
+    .get(function (req, res) {
+        Trailer.find({}, function (err, el) {
+            if (err) { res.status(402).send(err); }
+            res.json(el)
+        });
+    });
     router.route('/fetch-new-session')
     .get(function(req, res) {
       Session.remove({}, function (err) {
@@ -212,12 +228,12 @@ router.route('/fetch-new-trailer')
               "id" : item.id ,
               "time": item.time ,
               "prices": item.prices ,
-              "purchase_allowed": item.purchase_allowed 
+              "purchase_allowed": item.purchase_allowed
             }
           })
          };
        });
-    
+
         Session.insertMany(session, function (err, data) {
           if (err) {res.status(402).end()};
           res.send('success');
@@ -263,7 +279,7 @@ router.route('/cinemas')
     .get(function(req, res) {
         Session.find({}, function(err, sessions) {
             if (err) { res.status(402).send(err); }
-            res.json(sessions)  
+            res.json(sessions)
         });
     });
 

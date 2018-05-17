@@ -1,38 +1,70 @@
   body {
-    /* background-color: #FFCC00; */
     margin: 0;
+    font-family: 'Lato';
+    background-color: rgb(78, 72, 72);
   }
+
   h1, h2, p, ul, li {
-    font-family: Times, sans-serif;
+    font-family: 'Lato';
   }
+
   ul.navbar-nav li a {
-    color: #FFF;
-    font-weight: bold;
+    color: #E9F4C6;
+    font-weight: 500;
+    letter-spacing: 1px;
     text-decoration: none;
     display: block;
+    font-size: 18px;
+  }
 
+  .navbar {
+  background-color: #2B3035;
+  padding: 0 !important;
   }
-  ul.navbar-nav li.nav-item {
-    padding: 10px;
+
+  .navbar-brand{
+    margin: 0 55px;
+    color: #E9F4C6;
   }
-  .content h2 {
-    padding: 0;
-    margin: 0;
+
+  .navbar-dark .navbar-brand:hover {
+    transform: scale(1.1);
+    transition: all .2s ease-in-out;
+    color: #ECA400;
   }
+
+  .navbar-collapse {
+    margin-left: 50%;
+  }
+
+  .nav-item {
+    margin-left: 5px;
+  }
+
+  .nav-item a {
+    padding: 14px 20px 14px 15px;
+  }
+
+  .nav-item a:hover{
+   color: rgb(255, 209, 6);
+ }
+
   .content li {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
   }
 
   .nav-item a.active {
-    background-color: grey;
+    color: #ECA400;
   }
+
 
 /* Footer styles */
 
 .myFooter {
-  background-color: #182c39;
+  background-color: #2B3035;
   color: white;
   padding-top: 20px;
+  border:  1px solid rgb(56, 62, 68);
 }
 
 .map-container {
@@ -43,23 +75,36 @@
 }
 
 .myFooter .row {
-  margin: 0 85px;
+  margin: 0 25px;
+  text-align: center;
+}
+
+.myFooter .row h5 {
+  margin: 0 25px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 20px;
+}
+.myFooter .row li {
+  margin-top: 5px;
+
 }
 
 .myFooter .footer-copyright {
-  background-color: #10222e;
+  background-color: #192F38;
   padding-top: 3px;
   padding-bottom: 3px;
   text-align: center;
 }
 
 .myFooter .footer-copyright p {
-  margin: 10px;
   color: #ccc;
+  margin-top: 16px;
 }
 
 .myFooter .container {
-  width: auto;
+  width: 60%;
+  margin:0 20%;
 }
 
 .myFooter ul {
@@ -73,11 +118,13 @@
   color: white;
   font-weight: bold;
   margin-top: 30px;
+  font-weight: 200;
 }
 
 .myFooter a {
   color: #d2d1d1;
   text-decoration: none;
+  font-weight: 200;
 }
 
 .myFooter a:hover,
@@ -97,33 +144,40 @@
   margin-right: 15px;
   margin-left: 20px;
   background-color: white;
-  color: #182c39;
+  color: #2B3035;
   border-radius: 51%;
   padding: 10px;
   height: 50px;
-  width: 50px;
+  width: 52px;
   text-align: center;
   line-height: 31px;
   text-decoration: none;
   transition: color 0.2s;
 }
 
-.myFooter .fa-facebook:hover, 
+.myFooter .fa-facebook:hover,
 .myFooter .fa-facebook:focus {
-  color: #2b55ff;
+  color: #044383;
 }
 
 .myFooter .fa-google-plus:hover,
 .myFooter .fa-google-plus:focus {
-  color: red;
+  color: #e44100;
 }
 
 .myFooter .fa-twitter:hover,
 .myFooter .fa-twitter:focus {
-  color: #00aced;
+  color: #2290ff;
 }
 
-
+.map-desc {
+  color: rgb(121, 34, 39);
+  display: block;
+  width: 100px;
+  font-weight: 900;
+  background-color: white;
+  font-size: 14px;
+}
 @media screen and (max-width: 767px) {
   .myFooter {
       text-align: center;

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import ButtonBack from './ButtonBack';
 import './SingleCinema.css';
+import ResponsiveTable from '../DataTable/Table'
+import Footer from '../Footer'
 
 const BASE_URL = 'https://popcorn-studio-17.herokuapp.com';
 
@@ -15,7 +17,7 @@ class SingleCinema extends Component {
      })
   }
 
-  componentWillMount() {
+  componentDidMount() {
     axios.get(`${BASE_URL}/api/cinemas`)
       .then(res => {
         const currentCinema = res.data.filter(item =>
@@ -68,13 +70,15 @@ class SingleCinema extends Component {
       item = <div>
         <div className="cinema-img-box">
           <img src={stateData.url} className="cinema-img" alt="cinema" />
-        </div>
+
         <h1 className="cinemaholl-name">{stateData.name}</h1>
         <p className="cinemaholl-street">{stateData.address}</p>
+        </div>
       </div>
     }
 
     return(
+      <div>
       <div className="cinema-holl" onClick={this.cinema}>
         {item}
       <div className="description-holder">
@@ -87,7 +91,10 @@ class SingleCinema extends Component {
          onClick={this.handleClickTechnology}>Технології</button>
       </div>
       {technology}
+      <ResponsiveTable cinemaId={this.props.match.params.id}/>
        <ButtonBack />
+      </div>
+        <Footer id={this.props.match.params.id}/>
       </div>
     )
   }

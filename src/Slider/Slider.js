@@ -65,7 +65,7 @@ class Slider extends Component {
     return (<Link
         className={
         index === this.state.current ? 'slide-item active-slide' : 'slide-item'}
-        key={item.name}
+        key={item.id}
         style={{ backgroundImage: `url(${item.url})` }}
         to={`/film/${item.id}`}
       ></Link>)
@@ -77,7 +77,7 @@ class Slider extends Component {
         classer={index === this.state.current ? 'current-slide' : ''}
         slideNumber={index}
         certainSlide={this.certainSlide}
-        key={item.name}
+        key={item.id}
       />
     )
   }

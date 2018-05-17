@@ -2,37 +2,41 @@ import React, { Component } from "react";
 import {
     NavLink
   } from "react-router-dom";
+  import './index.css';
 
 
 class Navbar extends Component {
 
   render() {
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-
+        <nav className="navbar navbar-expand-lg navbar-dark">
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
-        <a className="navbar-brand" href="/">LOGO</a>
+        <NavLink to="/"><span className="navbar-brand">PopcornStudio</span></NavLink>
         <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
           <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
             <li className="nav-item">
-            <NavLink exact to="/">Home</NavLink>
+            <NavLink exact to="/">Головна</NavLink>
             </li>
             <li className="nav-item">
             <NavLink to="/cinemas">Кінотеатри</NavLink>
             </li>
             <li className="nav-item">
-            <NavLink to="/contact">Contact</NavLink>
+            <NavLink to="/contact">Контакти</NavLink>
             </li>
             <li className="nav-item">
-            <NavLink to="/login">Login</NavLink>
+            <NavLink to="/about">Про Нас</NavLink>
+            </li>
+            <li className="nav-item">
+            <NavLink to="/login">Вхід</NavLink>
+            </li>
+            <li className="nav-item">
+            <NavLink to="/afisha">Afisha</NavLink>
             </li>
           </ul>
-
         </div>
       </nav>
-
     );
   }
 }

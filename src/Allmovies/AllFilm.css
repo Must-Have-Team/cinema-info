@@ -18,7 +18,7 @@
 .parallax::after {
   content: '';
   transform: translateX(-1px) translateY(4px) scaleY(1.1);
-  background-image: url("../img/Webp.net-compress-image-min.jpg");
+  background-image: url("../img/photoeditorsdk-export-min.png");
   background-color: rgb(20, 13, 13);
   z-index: -1;
   opacity: 0.9;
@@ -37,11 +37,14 @@
 .actual {
   box-sizing: border-box;
   text-align: center;
-  background-color: rgb(236, 234, 234, 0.8);
+  background-color: rgb(20, 13, 13,0.38);
   width: 100%;
-  color: rgb(5, 5, 5);
-  font-weight: 800;
+  color: #fff;
+  font-weight: 200;
+  padding: 30px;
+  font-weight: 700;
 }
+
 .film-box {
   margin: 0 10px 20px 10px;
   width: 14%;
@@ -85,38 +88,43 @@
   line-height:0;
   color: rgb(68, 67, 67);
 }
+
+.stars {
+  margin-top: 20px;
+}
+
 .btn-all-film {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 1%;
+  margin: 15px 20px 70px 20px;
+
 }
 .btn-film {
   width: 150px;
   padding: 6% 0;
-  border:2px solid #e67300;
+  border:2px solid #ECA400;
   border-radius: 4%;
-  background: #2a2e33;
+  background: #2B3035 ;
   color: white;
   font-size: 18px;
   font-weight: 600;
 }
 .btn-film:hover{
   cursor: pointer;
-  background: linear-gradient(#2a2e33,#693500);
-  border-color: rgb(199, 199, 199);
+  background: #ECA400;
+  border-color: #2B3035;
 }
 .btn-film:active{
-  background: linear-gradient(#2a2e33,#bd5f02);
-  border-color:#e67300;
+  background: linear-gradient(#2a2e33,#bd5f00);
+  border-color:#2B3035;
 }
 .btn-film:focus {
   outline: 0;
-  background: linear-gradient(#2a2e33,#693500);
 }
 @media only screen and (max-width: 600px) {
 .film-box-holder {
-  padding: 3% 1% 0 3%;
+  padding: 20px 20px 20px 30px;
  }
 .parallax::after {
   transform: scale(1);
@@ -127,16 +135,17 @@
 .film-box {
   width: 47%;
   height: auto;
-  margin:1%;
+  margin:6px;
+  overflow: hidden;
  }
  .film-box:hover {
    transform: scale(1);
  }
 .img-box {
   width: 100%;
-  /* height: 88%; */
   height: auto;
 }
+  
 .film-info {
   font-size: 85%;
 }
@@ -147,21 +156,20 @@
 }
 @media only screen and (max-width: 840px) and (min-width: 601px) {
 .film-box-holder {
-  margin-right: 3%;
+  margin: 2px;
+  padding: 5px 0px 5px 35px;
 }
 .parallax::after {
   transform: scale(1);
 }
 .film-box {
   width:28%;
+  margin: 9px;
 }
  .film-box:hover {
    transform: scale(1.03);
  }
-.img-box {
-  width: 100%;
-  height: auto;
-}
+
 .btn-film {
   width: 180px;
   margin-bottom: 25%;
@@ -181,7 +189,7 @@
 }
 .img-box {
   width: 100%;
-  height: auto;
+  height: 240px;
 }
 .btn-film {
   width: 180px;
@@ -189,7 +197,10 @@
 }
 }
 @media only screen and (max-width: 1325px) and (min-width: 1001px) {
-.film-box {
+.film-box-holder {
+  padding: 5px 20px;
+}
+  .film-box {
   width:16%;
   margin: 1% 2%;
 }
@@ -198,7 +209,7 @@
 }
 .img-box {
   width: 100%;
-  height: auto;
+  height: 240px;
 }
 .btn-film {
   width: 180px;

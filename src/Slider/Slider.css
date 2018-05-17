@@ -22,7 +22,7 @@
 .slide-item.active-slide{
   width: 100%;
   display: block;
- 
+
   opacity: 1;
 }
 .slider .labels{
@@ -33,17 +33,17 @@
 }
 .slider .labels span{
   width: 25px;
-  height: 7px;
+  height: 5px;
   border-radius: 2px;
   background-color: #fff;
   cursor: pointer;
   margin-left: 10px;
 }
 .slider .labels span:hover{
-  background-color: #E36416;
+  background-color: #ECA400;
 }
 .slider .labels span.current-slide{
-  background-color: orange;
+  background-color: #ECA400;
 }
 .slider .btn{
   position: absolute;
