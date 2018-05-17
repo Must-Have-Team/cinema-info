@@ -129,7 +129,7 @@ router.route('/fetch-new-trailer')
         axios.get('https://popcorn-studio-17.herokuapp.com/api/films')
             .then(function (data) {
                 data.data.map(item => {
-                    axios.get(`https://kino-teatr.ua:8081/services/api/film/${item.id}/trailers?apiKey=${process.env.API_KEY}&size=1`)
+                    axios.get(`http://kino-teatr.ua:8081/services/api/film/${item.id}/trailers?apiKey=${process.env.API_KEY}&size=1`)
                         .then(function (data) {
                             var trailers = data.data.content.map(function (item) {
                                 return {
