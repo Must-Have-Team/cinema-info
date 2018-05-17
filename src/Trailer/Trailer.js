@@ -2,6 +2,7 @@ import React, {
   Component
 } from 'react';
 import axios from 'axios';
+import { newExpression } from 'babel-types';
 
 const BASE_URL = 'https://popcorn-studio-17.herokuapp.com';
 
@@ -14,22 +15,24 @@ class GetTrailer extends Component {
     }
   }
   componentDidMount() {
-    const toDataURL = url => axios.get(url).then(data => {
-
+  axios.get(`${BASE_URL}/api/trailers/`).then(data => {
       const trailer = data.data.filter(item => item.id === this.props.filmId);
-      const exactTrailer = trailer[0].url;
+      const exactTrailer = trailer[0].trailer;
+
       this.setState({
         trailer: exactTrailer
       })
     })
-    toDataURL(`${BASE_URL}/api/trailers/`);
+
+
   }
 
   render() {
+    let url = this.state.trailer;
+    let newurl = url.toString().replace(/http/i, 'https');
     return (
     <div className="iframe">
-      <iframe width="640" height="350" src={this.state.trailer}
-      style={{margin: '0 auto'}}
+      <iframe width="640" height="350" src={newurl}
       frameBorder="0" allowFullScreen></iframe>
     </div>
     )
