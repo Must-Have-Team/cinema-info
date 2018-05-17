@@ -10,11 +10,12 @@
 
   ul.navbar-nav li a {
     color: #E9F4C6;
-    font-weight: 500;
+    font-weight: 200;
     letter-spacing: 1px;
     text-decoration: none;
     display: block;
     font-size: 18px;
+    padding: 10px
   }
 
   .navbar {
@@ -23,7 +24,7 @@
   }
 
   .navbar-brand{
-    margin: 0 55px;
+    margin: 0 40px;
     color: #E9F4C6;
   }
 
@@ -178,6 +179,7 @@
   background-color: white;
   font-size: 14px;
 }
+
 @media screen and (max-width: 767px) {
   .myFooter {
       text-align: center;

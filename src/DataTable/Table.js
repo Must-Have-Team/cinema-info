@@ -18,7 +18,7 @@ class ResponsiveTable extends Component {
             currentSession: [],
             showPrice: false,
             days : [],
-            selected: '2018-05-16'
+            selected: '2018-05-17'
         };
         this.filterSessions = this.filterSessions.bind(this);
         this.renderTable = this.renderTable.bind(this);
@@ -65,7 +65,7 @@ class ResponsiveTable extends Component {
     renderTable() {
         this.filterSessions();
 
-        let toDaySession = [];// this.state.currentSession.filter( item => item.begin === this.state.selected )
+        let toDaySession = [];
         this.state.currentSession.map( item => {
             if(item.begin.indexOf(this.state.selected) !== -1) {
                 toDaySession.push(item)
@@ -73,7 +73,6 @@ class ResponsiveTable extends Component {
         })
         let layout = toDaySession.map(item => {
             let prices = item.times.map( item => {
-                //return item.time
                 if(item.prices === null) {
                     return 'Price is not allowed'
                 } else {
@@ -91,35 +90,36 @@ class ResponsiveTable extends Component {
                             <GetPoster filmId={item.film_id}/>
                         </Link>
                     </td>
-                    <td className='cell'>
+                    <td>
                         <Link className="title-link" to={`/film/${item.film_id}`}>
                             {this.getName(item.film_id)}
                         </Link>
                     </td>
-                    <td className='cell'>
-                       <p>{times[0]}</p>
+                    <td >
+                       <p className='times'>{times[0]}</p>
                        <p className='price'>{prices[0]}</p>
                     </td>
-                    <td className='cell'>
-                        <p>{times[1]}</p>
+                    <td>
+                        <p className='times'>{times[1]}</p>
                         <p className='price'>{prices[1]}</p>
                     </td>
-                    <td className='cell'>
-                        <p>{times[2]}</p>
+                    <td>
+                        <p className='times'>{times[2]}</p>
                         <p className='price'>{prices[2]}</p>
                     </td>
-                    <td className='cell'>
-                        <p>{times[3]}</p>
+                    <td>
+                        <p className='times'>{times[3]}</p>
                         <p className='price'>{prices[3]}</p>
                     </td>
-                    <td className='cell'>
-                        <p>{times[4]}</p>
+                    <td>
+                        <p className='times'>{times[4]}</p>
                         <p className='price'>{prices[4]}</p>
                     </td>
-                    <td className='cell'>
-                        <p>{times[5]}</p>
+                    <td>
+                        <p className='times'>{times[5]}</p>
                         <p className='price'>{prices[5]}</p>
                     </td>
+                    <td></td>
                 </tr>
             )
         })
@@ -134,7 +134,6 @@ class ResponsiveTable extends Component {
     
     handleSortForTime = () =>{
         let sortForTime = this.state.currentSession.sort((a, b) => {
-            console.log(a)
             
             if (a.times[0].time > b.times[0].time) return 1;
             if (a.times[0].time < b.times[0].time) return -1;
@@ -180,10 +179,10 @@ class ResponsiveTable extends Component {
                 <table className="container">
                     <thead>
                         <tr>
-                            <th>Poster</th>
-                            <th>Name</th>
-                            <th onClick={this.handleSortForTime} style={{ cursor: 'pointer'}}>Time</th>
-                            <th onClick={this.handleSortForPrice} style={{ cursor: 'pointer'}}>Price</th>
+                            <th>Афіша</th>
+                            <th>Назва фільму</th>
+                            <th onClick={this.handleSortForTime} style={{ cursor: 'pointer'}}>Час</th>
+                            <th onClick={this.handleSortForPrice} style={{ cursor: 'pointer'}}></th>
                             <th></th>
                             <th></th>
                             <th></th>

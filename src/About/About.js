@@ -148,7 +148,7 @@ class About extends Component {
         </div>
         <div className="row">
           <div className="col-md-8 mx-auto text-center">
-            <p className="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
+            <p className="large text-muted"></p>
           </div>
         </div>
       </div>

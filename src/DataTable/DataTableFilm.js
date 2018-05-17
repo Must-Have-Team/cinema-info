@@ -30,7 +30,6 @@ class DataTableFilm extends Component {
           .then(res => {
      
             const exactSession = res.data.filter( item =>  item.film_id.toString() === this.props.filmId.toString())
-            console.log(exactSession)
             this.setState({
                 filmSessions : exactSession
             })
@@ -38,13 +37,9 @@ class DataTableFilm extends Component {
      
             axios.get(`${BASE_URL}/api/cinemas`)
             .then(res => {
-                console.log(res.data)
                 const hall = this.state.currentHall;
-                console.log('1122323',hall)
                 const currentSession = res.data.filter( item =>item.hall_id === hall );
-                console.log(currentSession)
                 this.setState({ currentSession: currentSession });
-                console.log(this.state.currentSession);
             }) 
             axios.get(`${BASE_URL}/api/halls`)
             .then(res => {
@@ -83,14 +78,12 @@ class DataTableFilm extends Component {
             })
         }
     filterSessions() {
-        console.log('111', this.state.currentSession)
         const array = this.state.currentSession;
         array.sort(function(a,b){
             var c = new Date(a.begin);
             var d = new Date(b.begin);
             return c-d;
             });
-        console.log(array)
     }
     getCinemaName(id) {
         const multiplex = this.state.multiplex;
@@ -140,38 +133,36 @@ class DataTableFilm extends Component {
                     return item.prices
                 }   
             })
-            console.log('PRICES', prices)
             let times = item.times.map( item => {
                 return <p>{item.time}</p>
             })
-            console.log(times);
             return (
                 <tr key={item.id}>
                     <td>{this.getCinemaName(item.hall_id)}</td>
                     <td></td>
                     <td >{item.begin}</td>
                     <td>
-                        <p>{times[0]}</p>
+                        <p className='times'>{times[0]}</p>
                         <p className='price'>Ціна {prices[0]}</p>
                     </td>
                     <td>
-                        <p>{times[1]}</p>
+                        <p className='times'>{times[1]}</p>
                         <p className='price'>Ціна {prices[1]}</p>
                     </td>
                     <td>
-                        <p>{times[2]}</p>
+                        <p className='times'>{times[2]}</p>
                         <p className='price'>Ціна {prices[2]}</p>
                     </td>
                     <td>
-                        <p>{times[3]}</p>
+                        <p className='times'>{times[3]}</p>
                         <p className='price'>Ціна {prices[3]}</p>
                     </td>
                     <td>
-                        <p>{times[4]}</p>
+                        <p className='times'>{times[4]}</p>
                         <p className='price'>Ціна {prices[4]}</p>
                     </td>
                     <td>
-                        <p>{times[5]}</p>
+                        <p className='times'>{times[5]}</p>
                         <p className='price'>Ціна {prices[5]}</p>
                     </td>
                 </tr>
@@ -184,7 +175,7 @@ class DataTableFilm extends Component {
         
         return (
             <div>
-                <table className="container-fluid">
+                <table className="container">
                     <thead>
                         <tr>
                         

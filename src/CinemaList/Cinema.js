@@ -44,7 +44,7 @@ class Cinema extends Component {
     return (
       <div>
       <div className="cinema-list" >
-        <h2 className="text-list row justify-content-center">Список кінотеатрів у місті
+        <h2 className="text-list">Список кінотеатрів у місті
         <select className="cinema-select">
           <option>Львів</option>
           <option>Київ</option>
@@ -52,6 +52,7 @@ class Cinema extends Component {
           <option>Одесса</option>
           <option>Ужгород</option>
         </select></h2>
+        <hr/>
          <div className="cinema-box-holder">
           {this.state.data.map(this.renderCinema)}
         </div>

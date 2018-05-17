@@ -76,8 +76,9 @@ h2 a {
 	  background-color: #792227;
 }
 
-.container th {
+.container th, td {
     background-color: rgba(192, 48, 48, 0.288);
+    color: #fff;
 }
 
 .container th > h1 {
@@ -97,9 +98,18 @@ h2 a {
 .price {
   display: none;
 }
+
+td:hover .times {
+  display: none;
+}
+
 td:hover .price {
   display: block;
+  background-color: #fff;
+  cursor: pointer;
+  color: #000;
 }
+
 .poster-cell {
   width: 150px;
   height: 200px;

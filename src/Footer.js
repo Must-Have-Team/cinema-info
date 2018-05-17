@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Map from './googleMap/GoogleMap';
+import './index.css';
 import {
     NavLink
   } from "react-router-dom";
@@ -13,21 +14,21 @@ class Footer extends Component {
         <footer className='myFooter'>
         <div className="container p-0">
             <div className="row">
-                <div className="col-sm-4">
-                    <h5>Почати</h5>
+                <div className="col-sm-4 fot-box">
+                    <h3>Почати</h3>
                     <ul>
                         <li><NavLink exact to="/">Головна</NavLink></li>
                         <li><NavLink to="/login">Увійти</NavLink></li>
                     </ul>
                 </div>
-                <div className="col-sm-4">
-                <h5>Зв'язок</h5>
+                <div className="col-sm-4 fot-box">
+                <h3>Зв'язок</h3>
                     <ul>
                         <li><NavLink to="/contact">Контакти</NavLink></li>
                     </ul>
                 </div>
-                <div className="col-sm-4">
-                    <h5>Підтримка</h5>
+                <div className="col-sm-4 fot-box">
+                    <h3>Підтримка</h3>
                     <ul>
                         <li><NavLink exact to="/about">Наша Команда</NavLink></li>
                     </ul>
