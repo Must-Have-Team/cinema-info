@@ -1,0 +1,24 @@
+iframe {
+ margin: 20px 100px 30px 200px;
+}
+@media only screen and (max-width: 500px) {
+  iframe {
+    margin: 0px;
+    width: 300px;
+    height: 150px;
+  }
+}
+@media only screen and (max-width: 900px) and (min-width:501px){
+  iframe {
+    margin: 0px;
+    width: 500px;
+    height: 250px;
+  }
+}
+@media only screen and (max-width: 1300px) and (min-width:901px){
+  iframe {
+    margin: 20px;
+    width: 600px;
+    height: 350px;
+  }
+}

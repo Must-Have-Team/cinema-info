@@ -50,7 +50,7 @@ class SingleMovie extends Component {
                 <p>Rate this movie</p>
               <Stars star={stateData.rating/2}/>
               </div>
-              <div className="col-lg-8 col-md-12">
+              <div className="col-lg-8">
               <h1 className="title-stl">{stateData.title}({stateData.title_orig})</h1>
               <div className='sub-info-box'>
               <p>Жанр: {ganre}</p>
@@ -59,12 +59,13 @@ class SingleMovie extends Component {
               </div>
               <div className="descr-box col-md-12" dangerouslySetInnerHTML={{ __html: stateData.description }}></div>
               </div>
-          </div>
-          <button className="trailer-btn" type="button"
-            onClick={this.handleClickTrailer}>Трейлер<span className="open"></span></button>
+            <button className="trailer-btn" type="button"
+              onClick={this.handleClickTrailer}>Трейлер<span className="open"></span></button>
             <div className="trailer">
-          {this.state.isShow ? <GetTrailer filmId={stateData.id}/> : ''}
+              {this.state.isShow ? <GetTrailer filmId={stateData.id} /> : ''}
+            </div>
           </div>
+
             </div>
           <div className="description-holder">
                <DataTableFilm filmId={stateData.id} />

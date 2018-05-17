@@ -3,6 +3,7 @@ import React, {
 } from 'react';
 import axios from 'axios';
 import { newExpression } from 'babel-types';
+import './trailer.css'
 
 const BASE_URL = 'https://popcorn-studio-17.herokuapp.com';
 
@@ -33,6 +34,7 @@ class GetTrailer extends Component {
     return (
     <div className="iframe">
       <iframe width="640" height="350" src={newurl}
+
       frameBorder="0" allowFullScreen></iframe>
     </div>
     )
