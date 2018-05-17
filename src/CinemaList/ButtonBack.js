@@ -9,7 +9,7 @@ class ButtonBack extends Component {
     return (
       <div>
         <Link to={`/cinemas`}>
-          <button className="btn-back-to-cinema">Вернутись до кінотеатрів</button>
+          <button className="btn-back-to-cinema">Повернутись до кінотеатрів</button>
         </Link>
       </div>
     )

@@ -20,19 +20,19 @@ class Navbar extends Component {
             <NavLink exact to="/">Головна</NavLink>
             </li>
             <li className="nav-item">
-            <NavLink to="/cinemas">Кінотеатри</NavLink>
+            <NavLink to="/afisha">Афіша</NavLink>
             </li>
             <li className="nav-item">
-            <NavLink to="/contact">Контакти</NavLink>
+            <NavLink to="/cinemas">Кінотеатри</NavLink>
             </li>
             <li className="nav-item">
             <NavLink to="/about">Про Нас</NavLink>
             </li>
             <li className="nav-item">
-            <NavLink to="/login">Вхід</NavLink>
+            <NavLink to="/contact">Контакти</NavLink>
             </li>
             <li className="nav-item">
-            <NavLink to="/afisha">Afisha</NavLink>
+            <NavLink to="/login">Вхід</NavLink>
             </li>
           </ul>
         </div>
