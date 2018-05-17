@@ -119,6 +119,31 @@ router.route('/fetch-new-cinemas')
     })  
       });
     });
+
+router.route('/fetch-new-trailer')
+    .get(function (req, res) {
+        Trailer.remove({}, function (err) {
+            if (err) return handleError(err);
+        });
+        axios.get('http://popcorn-studio-17.herokuapp.com/api/films')
+            .then(function (data) {
+                data.data.map(item => {
+                    axios.get(`http://kino-teatr.ua:8081/services/api/film/${item.id}/trailers?apiKey=${process.env.API_KEY}&size=1`)
+                        .then(function (data) {
+                            var trailers = data.data.content.map(function (item) {
+                                return {
+                                    id: item.film_id,
+                                    trailer: item.url
+                                };
+                            });
+
+                            Trailer.insertMany(trailers)
+                            });
+                        })
+                })
+            });
+
+
     router.route('/fetch-cinemas-sessions')
     .get(function(req, res) {
       CinemaSession.remove({}, function (err) {
