@@ -18,7 +18,8 @@ class DataTableFilm extends Component {
             kopernyk : [],
             planetakino : [],
             forum : [],
-            kinopalats : []
+            kinopalats : [],
+            selected: '2018-05-17'
         };
         this.filterSessions = this.filterSessions.bind(this);
         this.renderTable = this.renderTable.bind(this);
@@ -124,11 +125,17 @@ class DataTableFilm extends Component {
         }
     }
     renderTable() {
-        let session = this.state.filmSessions;
-        let layout = session.map(item => {
+        let toDaySession = [];
+        this.state.filmSessions.map( item => {
+            console.log(item);
+            if(item.begin.indexOf(this.state.selected) !== -1) {
+                toDaySession.push(item)
+            };
+        })
+        let layout = toDaySession.map(item => {
             let prices = item.times.map( item => {
                 if(item.prices === null) {
-                    return '70'
+                    return 'недоступна'
                 } else {
                     return item.prices
                 }   
@@ -171,10 +178,34 @@ class DataTableFilm extends Component {
        return layout;
     }
 
+    handleChange = (e) => {
+        this.setState({
+            selected : e.target.value
+        })
+    }
+
     render() {
-        
+        let days = [];
+        this.state.filmSessions.map(item => {
+            if(days.indexOf(item.begin) === -1){
+                days.push(item.begin)
+            }
+        })
+        days.sort((a, b) => {
+            if (a > b) return 1;
+            if (a < b) return -1;
+            return 0
+        });
+
         return (
             <div>
+                <select onChange={this.handleChange}>
+                    {days.map(item => {
+                    return (
+                        <option key={item} value={item}>{item}</option>
+                    )
+                    })}
+                </select>
                 <table className="container">
                     <thead>
                         <tr>
