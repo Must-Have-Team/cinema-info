@@ -70,9 +70,10 @@ class SingleCinema extends Component {
       item = <div>
         <div className="cinema-img-box">
           <img src={stateData.url} className="cinema-img" alt="cinema" />
-        </div>
+
         <h1 className="cinemaholl-name">{stateData.name}</h1>
         <p className="cinemaholl-street">{stateData.address}</p>
+        </div>
       </div>
     }
 
