@@ -32,6 +32,7 @@ class GetPostersId extends Component {
         this.props.filmId
       }
       className = "img-box"
+      style={{width: '100%', height: 'auto'}}
       id = {
         this.props.filmId
       }
