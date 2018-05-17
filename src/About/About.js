@@ -18,8 +18,8 @@ class About extends Component {
       <div className="container">
         <div className="row">
           <div className="col-md-12 text-center">
-            <h2 className="section-heading text-uppercase">Our Amazing Team</h2>
-            <h3 className="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+            <h2 className="section-heading text-uppercase">Наша чудова команда</h2>
+            <h3 className="section-subheading text-muted">Єдиний шлях до успіху - перестати говорити і почати робити</h3>
           </div>
         </div>
         <div className="row">

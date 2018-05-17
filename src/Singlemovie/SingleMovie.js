@@ -44,7 +44,7 @@ class SingleMovie extends Component {
         <div className="film">
           <div className="container exact">
             <div className="row">
-              <div className="col-lg-4 col-md-12 ">
+              <div className="col-lg-4 col-md-12 rate-box">
                 <GetPoster filmId={stateData.id}/>
 
                 <p>Rate this movie</p>
@@ -65,8 +65,7 @@ class SingleMovie extends Component {
           </div>
             </div>
           <div className="description-holder">
-
-               {/* <DataTableFilm filmId={stateData.id} /> */}
+               <DataTableFilm filmId={stateData.id} />
           </div>
         </div>
     }
