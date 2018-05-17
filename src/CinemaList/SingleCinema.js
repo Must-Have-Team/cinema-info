@@ -53,7 +53,7 @@ class SingleCinema extends Component {
 
     if(this.state.showDescrioption) {
       const item = this.state.data[0];
-
+      console.log(item.description)
       description = (
         <div className="description-box">{item.description.split('\n').map((item, key) => {
           return <p key={key}>{item}<br /></p>

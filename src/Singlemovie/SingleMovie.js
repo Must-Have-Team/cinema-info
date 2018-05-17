@@ -5,7 +5,8 @@ import Footer from '../Footer';
 import './style.css';
 import GetPoster from '../Poster/GetPoster';
 import GetTrailer from '../Trailer/Trailer';
-import DataTableFilm from '../DataTable/DataTableFilm'
+import DataTableFilm from '../DataTable/DataTableFilm';
+
 
 const BASE_URL = 'https://popcorn-studio-17.herokuapp.com';
 
@@ -60,7 +61,7 @@ class SingleMovie extends Component {
           </div>
           <button className="trailer-btn" type="button"
             onClick={this.handleClickTrailer}>Трейлер<span className="open"></span></button>
-            <div className="traoler">
+            <div className="trailer">
           {this.state.isShow ? <GetTrailer filmId={stateData.id}/> : ''}
           </div>
             </div>
