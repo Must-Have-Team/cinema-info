@@ -116,8 +116,8 @@ td:hover .price {
 }
 
 .styled-select.rounded.single-cinema {
-  margin-left: 150px;
-  margin-bottom: 20px;
+  margin-left: 250px;
+  margin-bottom: 5px;
 }
 @media (max-width: 800px) {
 .container td:nth-child(4),
