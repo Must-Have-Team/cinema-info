@@ -1,6 +1,11 @@
   body {
     margin: 0;
-    font-family: Helvetica, sans-serif;
+    font-family: 'Lato';
+    background-color: rgb(78, 72, 72);
+  }
+
+  h1, h2, p, ul, li {
+    font-family: 'Lato';
   }
 
   ul.navbar-nav li a {

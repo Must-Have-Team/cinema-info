@@ -103,31 +103,31 @@ class DataTableFilm extends Component {
         const planetakino = this.state.planetakino;
         for (const value of planetakino) {
             if(value === id) {
-                return <Link to={`/cinema/207`}>Planeta kino</Link>
+                return <Link to={`/cinema/207`}>Планета кіно</Link>
             }
         }
         const dovzhenka = this.state.dovzhenka;
         for (const value of dovzhenka) {
             if(value === id) {
-                return <Link to={`/cinema/98`}>Kinopalace Dovzhenka</Link>
+                return <Link to={`/cinema/98`}>Кінопалац ім. Довженка</Link>
             }
         }
         const forum = this.state.forum;
         for (const value of forum) {
             if(value === id) {
-                return <Link to={`/cinema/315`}>Planeta kino (FORUM)</Link>
+                return <Link to={`/cinema/315`}>Планета кіно (FORUM)</Link>
             }
         }
         const kopernyk = this.state.kopernyk;
         for (const value of kopernyk) {
             if(value === id) {
-                return <Link to={`/cinema/103`}>Kinopalace Kopernyk</Link>
+                return <Link to={`/cinema/103`}>Кінопалац Коперника</Link>
             }
         }
         const kinopalats = this.state.kinopalats;
         for (const value of kinopalats) {
             if(value === id) {
-                return  <Link to={`/cinema/102`}>Kinopalace</Link>
+                return  <Link to={`/cinema/102`}>Кінопалац</Link>
             }
         }
     }
@@ -153,27 +153,27 @@ class DataTableFilm extends Component {
                     <td >{item.begin}</td>
                     <td>
                         <p>{times[0]}</p>
-                        <p>{prices[0]}</p>
+                        <p className='price'>Ціна {prices[0]}</p>
                     </td>
                     <td>
                         <p>{times[1]}</p>
-                        <p>{prices[1]}</p>
+                        <p className='price'>Ціна {prices[1]}</p>
                     </td>
                     <td>
                         <p>{times[2]}</p>
-                        <p>{prices[2]}</p>
+                        <p className='price'>Ціна {prices[2]}</p>
                     </td>
                     <td>
                         <p>{times[3]}</p>
-                        <p>{prices[3]}</p>
+                        <p className='price'>Ціна {prices[3]}</p>
                     </td>
                     <td>
                         <p>{times[4]}</p>
-                        <p>{prices[4]}</p>
+                        <p className='price'>Ціна {prices[4]}</p>
                     </td>
                     <td>
                         <p>{times[5]}</p>
-                        <p>{prices[5]}</p>
+                        <p className='price'>Ціна {prices[5]}</p>
                     </td>
                 </tr>
                 )
@@ -189,7 +189,7 @@ class DataTableFilm extends Component {
                     <thead>
                         <tr>
                         
-                            <th><h1>Cinema Name</h1></th>
+                            <th><h1>Назва кінотеатру</h1></th>
                             <th><h1></h1></th>
                             <th><h1>Date</h1></th>
                             <th><h1>Time</h1></th>
