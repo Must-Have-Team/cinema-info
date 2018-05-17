@@ -10,6 +10,7 @@ import Contact from "./About/Contact";
 import Login from "./Login/Login";
 import Navbar from './Navbar'
 import Footer from './Footer'
+import Afisha from './Afisha/Afisha'
 import SingleMovie from './Singlemovie/SingleMovie';
 import SingleCinema from './CinemaList/SingleCinema';
 import About from './About/About'
@@ -26,6 +27,7 @@ class Main extends Component {
                 <Route path="/cinema/:id" component={SingleCinema}/>
                 <Route path="/contact" component={Contact}/>
                 <Route path="/login" component={Login}/>
+                <Route path="/afisha" component={Afisha}/>
                 <Route path="/film/:id" component={SingleMovie}/>
                 <Route path="/about" component={About}/>
             </div>
