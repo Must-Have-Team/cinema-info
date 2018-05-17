@@ -18,19 +18,19 @@ class Navbar extends Component {
         <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
           <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
             <li className="nav-item">
-            <NavLink exact to="/">Home</NavLink>
+            <NavLink exact to="/">Головна</NavLink>
             </li>
             <li className="nav-item">
-            <NavLink to="/cinemas">Cinemas</NavLink>
+            <NavLink to="/cinemas">Кінотеатри</NavLink>
             </li>
             <li className="nav-item">
-            <NavLink to="/contact">Contacts</NavLink>
+            <NavLink to="/contact">Контакти</NavLink>
             </li>
             <li className="nav-item">
-            <NavLink to="/about">About</NavLink>
+            <NavLink to="/about">Про Нас</NavLink>
             </li>
             <li className="nav-item">
-            <NavLink to="/login">Login</NavLink>
+            <NavLink to="/login">Вхід</NavLink>
             </li>
           </ul>
 
