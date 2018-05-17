@@ -180,6 +180,14 @@
   font-size: 14px;
 }
 
+@media (min-width: 992px) and (max-width:1300px) {
+  #navbarTogglerDemo03 {
+    position: relative;
+    right: 25%;
+  }
+}
+
+
 @media screen and (max-width: 767px) {
   .myFooter {
       text-align: center;
