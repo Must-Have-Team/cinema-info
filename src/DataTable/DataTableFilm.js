@@ -36,7 +36,6 @@ class DataTableFilm extends Component {
             })
           })
      
-       
             axios.get(`${BASE_URL}/api/cinemas`)
             .then(res => {
                 console.log(res.data)

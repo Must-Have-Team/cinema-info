@@ -41,7 +41,7 @@ class Footer extends Component {
                 <a href="https://www.google.com.ua/" className="google"><i className="fa fa-google-plus"></i></a>
         </div>
         <div className="footer-copyright">
-            <p>© 2018 POPCORN </p>
+            <p>© 2018 POPCORN STUDIO</p>
         </div>
     </footer>
     );
