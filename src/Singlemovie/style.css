@@ -17,8 +17,36 @@
  .title-stl {
      text-align: center;
      margin-top: 20px;
+     font-size: 32px;
  }
 
  .rate-txt {
      text-align: center;
  }
+ .trailer-btn{
+    background: none;
+    border: none;
+    color: white;
+    text-align: center;
+    margin: 0 auto;
+    width:100%;
+    cursor: pointer;
+    font-size:18px;
+ }
+ .trailer-btn:hover {
+     color:#ECA400;
+ }
+ .trailer-btn span {
+    display: inline-block;
+    margin-left: 5px;
+    transition: all .2s cubic-bezier(0.39,0.575,0.565,1);
+    border-top: 8px solid #ffa700;
+    border-right: 6px solid transparent;
+    border-left: 6px solid transparent;
+ }
+ .trailer-btn:focus {
+     outline: none;
+ }
+.trailer {
+    margin: 20px 10px 20px 40px;
+}

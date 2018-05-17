@@ -17,7 +17,7 @@ const MyMapComponent = compose(
     console.log(props.id);
     return (
     <div>
-    {props.id ? 
+    {props.id ?
     <GoogleMap
       defaultZoom={10}
       defaultCenter={{ lat: 49.839683, lng: 24.029717 }}
