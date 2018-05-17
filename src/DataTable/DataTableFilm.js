@@ -128,7 +128,7 @@ class DataTableFilm extends Component {
         let layout = session.map(item => {
             let prices = item.times.map( item => {
                 if(item.prices === null) {
-                    return '70'
+                    return 'There is no price'
                 } else {
                     return item.prices
                 }   

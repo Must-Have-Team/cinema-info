@@ -74,7 +74,7 @@ class ResponsiveTable extends Component {
         let layout = toDaySession.map(item => {
             let prices = item.times.map( item => {
                 if(item.prices === null) {
-                    return 'Price is not allowed'
+                    return 'There is no price'
                 } else {
                     return `Ціна: ${item.prices}`
                 }   
@@ -169,7 +169,7 @@ class ResponsiveTable extends Component {
         });
         return (
             <div>
-            <select onChange={this.handleChange}>
+            <select onChange={this.handleChange} className="styled-select rounded single-cinema">
                 {days.map(item => {
                   return (
                     <option key={item} value={item}>{item}</option>
@@ -179,7 +179,7 @@ class ResponsiveTable extends Component {
                 <table className="container">
                     <thead>
                         <tr>
-                            <th>Афіша</th>
+                            <th className="afisha">Афіша</th>
                             <th>Назва фільму</th>
                             <th onClick={this.handleSortForTime} style={{ cursor: 'pointer'}}>Час</th>
                             <th onClick={this.handleSortForPrice} style={{ cursor: 'pointer'}}></th>

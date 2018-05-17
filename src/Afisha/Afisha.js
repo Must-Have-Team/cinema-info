@@ -5,6 +5,7 @@ import './Afisha.css';
 import {
 	Link
 } from 'react-router-dom'
+import Footer from '../Footer.js'
 
 const BASE_URL = 'https://popcorn-studio-17.herokuapp.com';
 
@@ -213,8 +214,9 @@ class DataTableFilm extends Component {
 				sessionsKopernik.push(item.filter( elem => elem.hall_id === 708 || elem.hall_id === 120));
 				sessionsDovzhenko.push(item.filter( elem => elem.hall_id === 141));
 				return (
+			
 					<tr key={index}>
-						<td>
+						<td className="image">
 							<Link to={`film/${item[0].film_id}`}>
 								<GetPoster filmId={item[0].film_id}/>
 							</Link>
@@ -239,6 +241,7 @@ class DataTableFilm extends Component {
 						</td>
 						
 					</tr>
+		
 				)
 			})
 			return table;
@@ -267,7 +270,7 @@ class DataTableFilm extends Component {
 		return (
 			<div className="afisha">
 				<div className="selects">
-					<select onChange={this.handleChange}>
+					<select onChange={this.handleChange} className="styled-select rounded">
 						<option value=''>Виберіть жанр</option>
 						{genre.map(item => {
 							return (
@@ -275,7 +278,7 @@ class DataTableFilm extends Component {
 								)
 						})}
 					</select>
-					<select onChange={this.handleChangeForDate}>
+					<select onChange={this.handleChangeForDate} className="styled-select rounded">
 			      {days.map(item => {
 			        return (
 			          <option key={item} value={item}>{item}</option>
@@ -299,6 +302,7 @@ class DataTableFilm extends Component {
 						{this.renderTable()}   
 					</tbody>
 				</table>
+				<Footer />
 			</div>
 		);
 	}
