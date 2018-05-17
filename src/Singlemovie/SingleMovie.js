@@ -26,7 +26,7 @@ class SingleMovie extends Component {
         descr = '',
         stateData = this.state.data[0]
     if (this.state.data.length === 0) {
-      item = <div>Loading...</div>
+      item = <div className="loader"></div>
     } else {
       item =
         <div className="film">
