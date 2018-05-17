@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Stars from '../starRating/StarRating';
+import Footer from '../Footer';
 import './style.css';
 import GetPoster from '../Poster/GetPoster';
+import GetTrailer from '../Trailer/Trailer';
 import DataTableFilm from '../DataTable/DataTableFilm'
 
 const BASE_URL = 'https://popcorn-studio-17.herokuapp.com';
@@ -10,7 +12,8 @@ const BASE_URL = 'https://popcorn-studio-17.herokuapp.com';
 class SingleMovie extends Component {
   constructor(props) {
     super(props);
-    this.state = { data: [] }
+    this.state = { data: [],
+    isShow: false }
   }
 
   componentWillMount() {
@@ -20,8 +23,17 @@ class SingleMovie extends Component {
         this.setState({ data: currentFilms });
       })
   }
-
+  handleClickTrailer=()=> {
+    const isShow = this.state.isShow;
+    this.setState({ isShow : !isShow });
+  }
   render() {
+    console.log(this.state.data);
+
+    let ganre = this.state.data.map(el => el.genres.map(item => item.name+" " ));
+    let country = this.state.data.map(el => el.countries.map(item => item.name+" "));
+    let duration = this.state.data.map(el => el.duration);
+
     let item = '',
         descr = '',
         stateData = this.state.data[0]
@@ -32,23 +44,36 @@ class SingleMovie extends Component {
         <div className="film">
           <div className="container exact">
             <div className="row">
-              <div className="col-lg-4">
+              <div className="col-lg-4 col-md-12 ">
                 <GetPoster filmId={stateData.id}/>
-                <h1 className="title-stl">{stateData.title}({stateData.title_orig})</h1>
+
                 <p>Rate this movie</p>
               <Stars star={stateData.rating/2}/>
               </div>
-              <div className="col-lg-8">
-                <div className="descr-box" dangerouslySetInnerHTML={{ __html: stateData.description }}></div>
+              <div className="col-lg-8 col-md-12">
+              <h1 className="title-stl">{stateData.title}({stateData.title_orig})</h1>
+              <p>Жанр: {ganre}</p>
+              <p>Країна: {country}</p>
+              <p>Час: {duration} хв.</p>
+              <div className="descr-box col-md-12" dangerouslySetInnerHTML={{ __html: stateData.description }}></div>
               </div>
+          </div>
+          <button className="trailer-btn" type="button"
+            onClick={this.handleClickTrailer}>Трейлер<span className="open"></span></button>
+            <div className="traoler">
+          {this.state.isShow ? <GetTrailer filmId={stateData.id}/> : ''}
+          </div>
             </div>
-               <DataTableFilm filmId={stateData.id} />
+          <div className="description-holder">
+
+               {/* <DataTableFilm filmId={stateData.id} /> */}
           </div>
         </div>
     }
     return (
       <div>
         {item}
+      <Footer />
       </div>
     )
   }
