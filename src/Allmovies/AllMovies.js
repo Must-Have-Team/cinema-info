@@ -34,7 +34,7 @@ class Movies extends Component{
           <Link className="title-link" to={`/film/${el.id}`}>
             <GetPoster filmId={el.id}/>
             <div className="film-info">
-              <span className="film-raiting "><Star star={el.rating / 2} /></span>
+            <span className="film-raiting"><Star star={el.rating/2} /></span>
               <p className="film-name">{el.title}</p>
             </div>
           </Link>

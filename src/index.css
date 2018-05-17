@@ -1,15 +1,21 @@
   body {
     margin: 0;
-    font-family: Helvetica, sans-serif;
+    font-family: 'Lato';
+    background-color: rgb(78, 72, 72);
+  }
+
+  h1, h2, p, ul, li {
+    font-family: 'Lato';
   }
 
   ul.navbar-nav li a {
     color: #E9F4C6;
-    font-weight: 500;
+    font-weight: 200;
     letter-spacing: 1px;
     text-decoration: none;
     display: block;
     font-size: 18px;
+    padding: 10px
   }
 
   .navbar {
@@ -17,13 +23,15 @@
   padding: 0 !important;
   }
 
-  .navbar-brand {
-    margin: 0 55px;
+  .navbar-brand{
+    margin: 0 40px;
+    color: #E9F4C6;
   }
 
-  .navbar-brand:hover {
+  .navbar-dark .navbar-brand:hover {
     transform: scale(1.1);
     transition: all .2s ease-in-out;
+    color: #ECA400;
   }
 
   .navbar-collapse {
@@ -171,6 +179,7 @@
   background-color: white;
   font-size: 14px;
 }
+
 @media screen and (max-width: 767px) {
   .myFooter {
       text-align: center;

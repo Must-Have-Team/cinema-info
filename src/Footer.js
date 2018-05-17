@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Map from './googleMap/GoogleMap';
+import './index.css';
 import {
     NavLink
   } from "react-router-dom";
@@ -13,25 +14,23 @@ class Footer extends Component {
         <footer className='myFooter'>
         <div className="container p-0">
             <div className="row">
-                <div className="col-sm-4">
-                    <h5>Get started</h5>
+                <div className="col-sm-4 fot-box">
+                    <h3>Почати</h3>
                     <ul>
-                        <li><NavLink exact to="/">Home</NavLink></li>
-                        <li><NavLink to="/login">Login</NavLink></li>
+                        <li><NavLink exact to="/">Головна</NavLink></li>
+                        <li><NavLink to="/login">Увійти</NavLink></li>
                     </ul>
                 </div>
-                <div className="col-sm-4">
-                    <h5>About us</h5>
+                <div className="col-sm-4 fot-box">
+                <h3>Зв'язок</h3>
                     <ul>
-                        <li><a href="#">Company Information</a></li>
-                        <li><a href="/contact">Contact us</a></li>
+                        <li><NavLink to="/contact">Контакти</NavLink></li>
                     </ul>
                 </div>
-                <div className="col-sm-4">
-                    <h5>Support</h5>
+                <div className="col-sm-4 fot-box">
+                    <h3>Підтримка</h3>
                     <ul>
-                        <li><a>FAQ</a></li>
-                        <li><a>Help desk</a></li>
+                        <li><NavLink exact to="/about">Наша Команда</NavLink></li>
                     </ul>
                 </div>
             </div>
@@ -43,7 +42,7 @@ class Footer extends Component {
                 <a href="https://www.google.com.ua/" className="google"><i className="fa fa-google-plus"></i></a>
         </div>
         <div className="footer-copyright">
-            <p>© 2018 POPCORN </p>
+            <p>© 2018 POPCORN STUDIO</p>
         </div>
     </footer>
     );

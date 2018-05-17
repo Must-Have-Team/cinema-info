@@ -16,7 +16,9 @@ class ResponsiveTable extends Component {
             filmsData : [],
             currentHall : null,
             currentSession: [],
-            showPrice: false
+            showPrice: false,
+            days : [],
+            selected: '2018-05-17'
         };
         this.filterSessions = this.filterSessions.bind(this);
         this.renderTable = this.renderTable.bind(this);
@@ -47,7 +49,6 @@ class ResponsiveTable extends Component {
           )
         }
     filterSessions() {
-        console.log('111', this.state.currentSession)
         const array = this.state.currentSession;
         array.sort(function(a,b){
             var c = new Date(a.begin);
@@ -63,10 +64,15 @@ class ResponsiveTable extends Component {
     }
     renderTable() {
         this.filterSessions();
-        let session = this.state.currentSession;
-        let layout = session.map(item => {
+
+        let toDaySession = [];
+        this.state.currentSession.map( item => {
+            if(item.begin.indexOf(this.state.selected) !== -1) {
+                toDaySession.push(item)
+            };
+        })
+        let layout = toDaySession.map(item => {
             let prices = item.times.map( item => {
-                //return item.time
                 if(item.prices === null) {
                     return 'Price is not allowed'
                 } else {
@@ -74,8 +80,9 @@ class ResponsiveTable extends Component {
                 }   
             })
             let times = item.times.map( item => {
-                return <p>{item.time}</p>
+                return item.time
             })
+
             return (
                 <tr key={item.id}>
                     <td className='poster-cell'>
@@ -83,58 +90,104 @@ class ResponsiveTable extends Component {
                             <GetPoster filmId={item.film_id}/>
                         </Link>
                     </td>
-                    <td className='cell'>
+                    <td>
                         <Link className="title-link" to={`/film/${item.film_id}`}>
                             {this.getName(item.film_id)}
                         </Link>
                     </td>
-                    <td className='date-cell'>{item.begin}</td>
-                    <td className='cell'>
-                       <p>{times[0]}</p>
+                    <td >
+                       <p className='times'>{times[0]}</p>
                        <p className='price'>{prices[0]}</p>
                     </td>
-                    <td className='cell'>
-                        <p>{times[1]}</p>
+                    <td>
+                        <p className='times'>{times[1]}</p>
                         <p className='price'>{prices[1]}</p>
                     </td>
-                    <td className='cell'>
-                        <p>{times[2]}</p>
+                    <td>
+                        <p className='times'>{times[2]}</p>
                         <p className='price'>{prices[2]}</p>
                     </td>
-                    <td className='cell'>
-                        <p>{times[3]}</p>
+                    <td>
+                        <p className='times'>{times[3]}</p>
                         <p className='price'>{prices[3]}</p>
                     </td>
-                    <td className='cell'>
-                        <p>{times[4]}</p>
+                    <td>
+                        <p className='times'>{times[4]}</p>
                         <p className='price'>{prices[4]}</p>
                     </td>
-                    <td className='cell'>
-                        <p>{times[5]}</p>
+                    <td>
+                        <p className='times'>{times[5]}</p>
                         <p className='price'>{prices[5]}</p>
                     </td>
+                    <td></td>
                 </tr>
-                )
+            )
         })
        return layout;
     }
 
+    handleChange = (e) => {
+        this.setState({
+            selected : e.target.value
+        })
+    }
+    
+    handleSortForTime = () =>{
+        let sortForTime = this.state.currentSession.sort((a, b) => {
+            
+            if (a.times[0].time > b.times[0].time) return 1;
+            if (a.times[0].time < b.times[0].time) return -1;
+            return 0
+        })
+        this.setState({
+            currentSession : sortForTime
+        })
+    }
+
+    handleSortForPrice = () =>{
+        let sortForPrice = this.state.currentSession.sort((a, b) => {
+            if (a.times[0].prices > b.times[0].prices) return 1;
+            if (a.times[0].prices < b.times[0].prices) return -1;
+            return 0
+        })
+        this.setState({
+            currentSession : sortForPrice
+        })
+    }
+
     render() {
-        
+        let days = [];
+        this.state.currentSession.map(item => {
+            if(days.indexOf(item.begin) === -1){
+                days.push(item.begin)
+            }
+        })
+        days.sort((a, b) => {
+            if (a > b) return 1;
+            if (a < b) return -1;
+            return 0
+        });
         return (
             <div>
+            <select onChange={this.handleChange}>
+                {days.map(item => {
+                  return (
+                    <option key={item} value={item}>{item}</option>
+                  )
+                })}
+            </select>
                 <table className="container">
                     <thead>
                         <tr>
-                            <th><h1>Poster</h1></th>
-                            <th><h1>Name</h1></th>
-                            <th><h1>Date</h1></th>
-                            <th><h1>Time</h1></th>
-                            <th><h1></h1></th>
-                            <th><h1></h1></th>
-                            <th><h1></h1></th>
-                            <th><h1></h1></th>
-                            <th><h1></h1></th>
+                            <th>Афіша</th>
+                            <th>Назва фільму</th>
+                            <th onClick={this.handleSortForTime} style={{ cursor: 'pointer'}}>Час</th>
+                            <th onClick={this.handleSortForPrice} style={{ cursor: 'pointer'}}></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>

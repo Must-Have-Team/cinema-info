@@ -39,23 +39,24 @@ class SingleMovie extends Component {
         descr = '',
         stateData = this.state.data[0]
     if (this.state.data.length === 0) {
-      item = <div>Loading...</div>
+      item = <div className="loader"></div>
     } else {
       item =
         <div className="film">
           <div className="container exact">
             <div className="row">
-              <div className="col-lg-4 col-md-12 ">
+              <div className="col-lg-4 col-md-12 rate-box">
                 <GetPoster filmId={stateData.id}/>
-
                 <p>Rate this movie</p>
               <Stars star={stateData.rating/2}/>
               </div>
               <div className="col-lg-8 col-md-12">
               <h1 className="title-stl">{stateData.title}({stateData.title_orig})</h1>
+              <div className='sub-info-box'>
               <p>Жанр: {ganre}</p>
               <p>Країна: {country}</p>
               <p>Час: {duration} хв.</p>
+              </div>
               <div className="descr-box col-md-12" dangerouslySetInnerHTML={{ __html: stateData.description }}></div>
               </div>
           </div>
@@ -66,8 +67,7 @@ class SingleMovie extends Component {
           </div>
             </div>
           <div className="description-holder">
-
-               {/* <DataTableFilm filmId={stateData.id} /> */}
+               <DataTableFilm filmId={stateData.id} />
           </div>
         </div>
     }

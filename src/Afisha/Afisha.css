@@ -1,0 +1,21 @@
+.afisha td{
+	width: calc(100% / 7);
+	height: auto;
+}
+.afisha td img {
+	width: 100%;
+}
+.afisha td a{
+	display: block;
+	border: 1px solid black;
+	padding: 5px;
+	text-align: center;
+
+}
+.afisha tr:nth-child(even) td:nth-child(odd){
+	background: #ccc;
+}
+.afisha tr:nth-child(odd) td:nth-child(even){
+	background: #ccc;
+}
+
